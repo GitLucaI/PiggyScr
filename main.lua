@@ -121,7 +121,7 @@ local function createESP(ch, isPiggy)
 	else
 		hl.FillColor = Color3.new(0, 0.427451, 0.427451)
 		hl.Name = "PlayerHL"
-		hl.Enabled = piggyespvalue.Value
+		hl.Enabled = playerespvalue.Value
 		hl.Parent = ch
 	end
 end
