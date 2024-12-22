@@ -158,7 +158,7 @@ local function createItemESP(item:BasePart)
 	RS.RenderStepped:Connect(function()
 		myDistance = (ppart.Position - item.Position).Magnitude
 		formattedDistance = string.format("%.2f", myDistance)
-		tl.Text = tostring(formattedDistance) .. " studs away!"
+		tl.Text = tostring(formattedDistance) .. " studs away!" or ""
 	end)
 
 	local hl = Instance.new("Highlight")
