@@ -97,7 +97,7 @@ local function createESP(ch, isPiggy)
 	local bui = Instance.new("BillboardGui")
 	bui.AlwaysOnTop = true
 	bui.Name = isPiggy and "PiggyHL" or "PlayerHL"
-	bui.Size = UDim2.new(0, 50, 0, 25)
+	bui.Size = UDim2.new(0, 100, 0, 50)
 	local tl = Instance.new("TextLabel")
 	tl.BackgroundTransparency = 1
 	tl.Size = UDim2.new(1, 0, 1, 0)
@@ -110,9 +110,6 @@ local function createESP(ch, isPiggy)
 	uiStroke.Parent = tl
 
 	bui.Parent = ch
-	bui.Adornee = ch.PrimaryPart
-	local myDistance
-	local formattedDistance
 	tl.Text = ch.Name
 
 	local hl = Instance.new("Highlight")
@@ -147,8 +144,6 @@ local function createItemESP(item:BasePart)
 
 	bui.Parent = item
 	bui.Adornee = item
-	local myDistance
-	local formattedDistance
 	tl.Text = item.Name
 
 	local hl = Instance.new("Highlight")
@@ -176,8 +171,6 @@ local function createTrapESP(trap)
 
 	bui.Parent = trap
 	bui.Adornee = trap
-	local myDistance
-	local formattedDistance
 	tl.Text = trap.Name
 
 	local hl = Instance.new("Highlight")
