@@ -128,8 +128,7 @@ end
 
 workspace.DescendantAdded:Connect(function(c)
 	if c:IsA("Model") and c:FindFirstChild("Humanoid") then
-		local health = c.Humanoid.Health
-		if c.Parent == workspace.PiggyNPC or health > 100 then
+		if c:FindFirstChild("Enemy") then
 			createESP(c, true)
 		elseif players:GetPlayerFromCharacter(c) then
 			createESP(c, false)
