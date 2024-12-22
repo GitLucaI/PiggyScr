@@ -113,13 +113,7 @@ local function createESP(ch, isPiggy)
 	bui.Adornee = ch.PrimaryPart
 	local myDistance
 	local formattedDistance
-	RS.RenderStepped:Connect(function()
-		if ch.PrimaryPart then
-			myDistance = (ppart.Position - ch.PrimaryPart.Position).Magnitude
-			formattedDistance = string.format("%.2f", myDistance)
-			tl.Text = tostring(formattedDistance) .. " studs away!"
-		end
-	end)
+	tl.Text = ch.Name
 
 	local hl = Instance.new("Highlight")
 	if isPiggy then
@@ -184,11 +178,7 @@ local function createTrapESP(trap)
 	bui.Adornee = trap
 	local myDistance
 	local formattedDistance
-	RS.RenderStepped:Connect(function()
-		myDistance = (ppart.Position - trap.Position).Magnitude 
-		formattedDistance = string.format("%.2f", myDistance)
-		tl.Text = tostring(formattedDistance) .. " studs away!"
-	end)
+	tl.Text = trap.Name
 
 	local hl = Instance.new("Highlight")
 	hl.FillColor = Color3.new(1, 0, 0)
