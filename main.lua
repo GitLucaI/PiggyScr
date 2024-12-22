@@ -155,11 +155,7 @@ local function createItemESP(item:BasePart)
 	bui.Adornee = item
 	local myDistance
 	local formattedDistance
-	RS.RenderStepped:Connect(function()
-		myDistance = (ppart.Position - item.Position).Magnitude
-		formattedDistance = string.format("%.2f", myDistance)
-		tl.Text = tostring(formattedDistance) .. " studs away!" or ""
-	end)
+	tl.Text = item.Name
 
 	local hl = Instance.new("Highlight")
 	hl.FillColor = item.Color
