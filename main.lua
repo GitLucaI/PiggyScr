@@ -137,7 +137,7 @@ local function createItemESP(item:BasePart)
 	tl.TextScaled = true
 	tl.TextColor3 = Color3.fromRGB(255, 255, 255)
 	tl.Parent = bui
-
+	
 	local uiStroke = Instance.new("UIStroke")
 	uiStroke.Transparency = 0
 	uiStroke.Parent = tl
@@ -184,11 +184,15 @@ for _, c in pairs(workspace:GetDescendants()) do
 	if c:IsA("Humanoid") then
 		local ch = c.Parent
 		if ch.Name ~= player.Name then
-			if players:GetPlayerFromCharacter(ch) or ch.Parent == workspace.PiggyNPC then
-				if c.Health > 100 then
+			if players:GetPlayerFromCharacter(ch) then
+				if ch:FindFirstChild("Enemy") then
 					createESP(ch, true)
-				elseif c.Health < 101 then
+				else
 					createESP(ch, false)
+				end
+			else
+				if ch:FindFirstChild("Enemy") and ch:FindFirstChild("BotMainScript") or ch:FindFirstChild("isStunned") or ch:FindFirstChild("IsStunned") then
+					createESP(ch, true)
 				end
 			end
 		end
@@ -219,7 +223,7 @@ for _, c in pairs(players:GetPlayers()) do
 			chr:FindFirstChild("PlayerHL"):Destroy()
 		end
 	end
-
+	
 	b.ChildAdded:Connect(function(item)
 		if item.Name == "Knife" then
 			createESP(chr, true)
@@ -232,25 +236,27 @@ for _, c in pairs(players:GetPlayers()) do
 end
 
 workspace.DescendantAdded:Connect(function(c)
-	if c:IsA("Humanoid") then
-		local ch = c.Parent
-		if ch.Name ~= player.Name then
-			if c:FindFirstChild("Enemy") then
-				createESP(ch, true)
-			else
-				if players:GetPlayerFromCharacter(c) then
-					createESP(ch, false)
-				end
-			end
-		end
-	end
 	if c.Name == "ItemPickupScript" then
 		createItemESP(c.Parent)
 	end
 	if c.Name == "Trap Sound" or c.Name == "TrapSound" then
 		createTrapESP(c.Parent)
 	end
+	if c:FindFirstChildWhichIsA("Humanoid") then
+		local cname = c.Name
+		if players:FindFirstChild(cname) then
+			if c:FindFirstChild("Enemy") then
+				createESP(c, true)
+			else
+				createESP(c, false)
+			end
+			if c:FindFirstChild("Enemy") and (c:FindFirstChild("BotMainScript") or c:FindFirstChild("isStunned") or c:FindFirstChild("IsStunned")) then
+				createESP(c, true)
+			end
+		end
+	end
 end)
+
 
 piggyespvalue.Changed:Connect(function()
 	for _, hl in pairs(workspace:GetDescendants()) do
@@ -282,4 +288,4 @@ trapespvalue.Changed:Connect(function()
 			hl.Enabled = trapespvalue.Value
 		end
 	end
-end) 
+end)
