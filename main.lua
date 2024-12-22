@@ -126,129 +126,14 @@ local function createESP(ch, isPiggy)
 	end
 end
 
-local function createItemESP(item:BasePart)
-	local bui = Instance.new("BillboardGui")
-	bui.AlwaysOnTop = true
-	bui.Name = "ItemHL"
-	bui.Size = UDim2.new(0, 75, 0, 40)
-	local tl = Instance.new("TextLabel")
-	tl.BackgroundTransparency = 1
-	tl.Size = UDim2.new(1, 0, 1, 0)
-	tl.TextScaled = true
-	tl.TextColor3 = Color3.fromRGB(255, 255, 255)
-	tl.Parent = bui
-	
-	local uiStroke = Instance.new("UIStroke")
-	uiStroke.Transparency = 0
-	uiStroke.Parent = tl
-
-	bui.Parent = item
-	bui.Adornee = item
-	tl.Text = item.Name
-
-	local hl = Instance.new("Highlight")
-	hl.FillColor = item.Color
-	hl.Name = "ItemHL"
-	hl.Enabled = itemsesp.Value
-	hl.Parent = item
-end
-
-local function createTrapESP(trap)
-	local bui = Instance.new("BillboardGui")
-	bui.AlwaysOnTop = true
-	bui.Name = "TrapHL"
-	bui.Size = UDim2.new(0, 75, 0, 40)
-	local tl = Instance.new("TextLabel")
-	tl.BackgroundTransparency = 1
-	tl.Size = UDim2.new(1, 0, 1, 0)
-	tl.TextScaled = true
-	tl.TextColor3 = Color3.fromRGB(255, 0, 0)
-	tl.Parent = bui
-
-	local uiStroke = Instance.new("UIStroke")
-	uiStroke.Transparency = 0
-	uiStroke.Parent = tl
-
-	bui.Parent = trap
-	bui.Adornee = trap
-	tl.Text = trap.Name
-
-	local hl = Instance.new("Highlight")
-	hl.FillColor = Color3.new(1, 0, 0)
-	hl.Name = "TrapHL"
-	hl.Enabled = trapespvalue.Value
-	hl.Parent = trap
-end
-
-for _, c in pairs(workspace:GetDescendants()) do
-	if c:IsA("Humanoid") then
-		local ch = c.Parent
-		if ch.Name ~= player.Name then
-			if players:GetPlayerFromCharacter(ch) or ch.Parent == workspace.PiggyNPC then
-				if c.Health > 100 then
-					createESP(ch, true)
-				elseif c.Health < 101 then
-					createESP(ch, false)
-				end
-			end
-		end
-	end
-end
-
-for _, c in pairs(workspace:GetDescendants()) do
-	if c:FindFirstChild("ItemPickupScript") then
-		createItemESP(c)
-	end
-end
-
-for _, c in pairs(workspace:GetDescendants()) do
-	if c:FindFirstChild("Trap Sound") or c:FindFirstChild("TrapSound") then
-		createTrapESP(c)
-	end
-end
-
-for _, c in pairs(players:GetPlayers()) do
-	local chr = c.Character or c.CharacterAdded:Wait()
-	c.CharacterAdded:Connect(function(ch)
-		chr = ch
-	end)
-	local b = c.Backpack
-	if b:FindFirstChild("Knife") then
-		createESP(chr, true)
-		if chr:FindFirstChild("PlayerHL") then
-			chr:FindFirstChild("PlayerHL"):Destroy()
-		end
-	end
-	
-	b.ChildAdded:Connect(function(item)
-		if item.Name == "Knife" then
-			createESP(chr, true)
-			if chr:FindFirstChild("PlayerHL") then
-				chr:FindFirstChild("PlayerHL"):Destroy()
-			end
-		end
-
-	end)
-end
-
 workspace.DescendantAdded:Connect(function(c)
-	if c:IsA("Humanoid") then
-		local ch = c.Parent
-		if ch.Name ~= player.Name then
-			if players:GetPlayerFromCharacter(ch) or ch.Parent == workspace.PiggyNPC then
-				if c.Health > 100 then
-					createESP(ch, true)
-				elseif c.Health < 101 then
-					createESP(ch, false)
-				end
-			end
+	if c:IsA("Model") and c:FindFirstChild("Humanoid") then
+		local health = c.Humanoid.Health
+		if c.Parent == workspace.PiggyNPC or health > 100 then
+			createESP(c, true)
+		elseif players:GetPlayerFromCharacter(c) then
+			createESP(c, false)
 		end
-	end
-	if c.Name == "ItemPickupScript" then
-		createItemESP(c.Parent)
-	end
-	if c.Name == "Trap Sound" or c.Name == "TrapSound" then
-		createTrapESP(c.Parent)
 	end
 end)
 
@@ -264,22 +149,6 @@ playerespvalue.Changed:Connect(function()
 	for _, hl in pairs(workspace:GetDescendants()) do
 		if hl.Name == "PlayerHL" then
 			hl.Enabled = playerespvalue.Value
-		end
-	end
-end)
-
-itemsesp.Changed:Connect(function()
-	for _, hl in pairs(workspace:GetDescendants()) do
-		if hl.Name == "ItemHL" then
-			hl.Enabled = itemsesp.Value
-		end
-	end
-end)
-
-trapespvalue.Changed:Connect(function()
-	for _, hl in pairs(workspace:GetDescendants()) do
-		if hl.Name == "TrapHL" then
-			hl.Enabled = trapespvalue.Value
 		end
 	end
 end)
