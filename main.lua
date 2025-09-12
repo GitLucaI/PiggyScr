@@ -628,7 +628,7 @@ local function createGui(parent)
 	TextButton72["AnchorPoint"] = Vector2.new(0.0500000007, 0.5)
 	TextButton72["Font"] = Enum.Font.Oswald
 	TextButton72["Name"] = "Toggle"
-	TextButton72["Position"] = UDim2.new(0.0064275763, 0, 0.0995024815, 0)
+	TextButton72["Position"] = UDim2.new(0.0064275763, 0, 0.5, 0)
 	TextButton72["BackgroundTransparency"] = 0.30000001192092896
 	TextButton72["Size"] = UDim2.new(0.130617976, 0, 0.0740825459, 0)
 	TextButton72["TextScaled"] = true
@@ -2122,7 +2122,7 @@ local function createGui(parent)
 	end)
 	spawn(function() --Source for Script71
 		local script = Script71
-		local load_guicoreV2 = false
+		--[[local load_guicoreV2 = false
 		if game:GetService("RunService"):IsClient() then
 			local coregui = game.CoreGui
 			if coregui then
@@ -2134,7 +2134,7 @@ local function createGui(parent)
 					load_guicoreV2 = true
 				end
 			end
-		end 
+		end ]]--
 	end)
 end
 createGui(game.CoreGui) --coregui by default you should but change it
