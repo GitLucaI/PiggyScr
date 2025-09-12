@@ -2068,6 +2068,20 @@ local function createGui(parent)
 			end
 		end)
 		GuiLib:AddLabel("More", "Teleporters", 19)
+		GuiLib:AddButton("More", "Kill Everyone (Piggy)", 20, function()
+			if character:HasTag("PiggySubject") then
+				for _, contestant in pairs(CollectionService:GetTagged("PlayersSubject")) do
+					if contestant:IsA("Model") then
+						if contestant.PrimaryPart and contestant:FindFirstChildWhichIsA("Humanoid") then
+							local cframe = contestant.PrimaryPart.CFrame
+							repeat task.wait()
+								character:PivotTo(cframe)
+							until contestant.Humanoid.Health <= 0
+						end
+					end
+				end
+			end
+		end)
 		return GuiLib
 		
 	end)
