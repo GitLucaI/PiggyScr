@@ -276,9 +276,9 @@ local function createGui(parent)
 	local UIGradient33 = Instance.new("UIGradient",UIStroke32)
 	UIGradient33["Rotation"] = 90
 	UIGradient33["Color"] = ColorSequence.new{
-		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
-		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
-		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
+		ColorSequenceKeypoint.new(0,Color3.new(1,0.501961,0.592157)),
+		ColorSequenceKeypoint.new(0.414309,Color3.new(0.996078,0.494118,0.521569)),
+		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.560784,0.517647))
 	}
 	----UIGradient33----
 	--UIGradient34--
@@ -429,9 +429,9 @@ local function createGui(parent)
 	local UIGradient50 = Instance.new("UIGradient",UIStroke49)
 	UIGradient50["Rotation"] = 90
 	UIGradient50["Color"] = ColorSequence.new{
-		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
-		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
-		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
+		ColorSequenceKeypoint.new(0,Color3.new(1,0.501961,0.592157)),
+		ColorSequenceKeypoint.new(0.414309,Color3.new(0.996078,0.494118,0.521569)),
+		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.560784,0.517647))
 	}
 	----UIGradient50----
 	--UIGradient51--
@@ -525,246 +525,241 @@ local function createGui(parent)
 		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.560784,0.517647))
 	}
 	----UIGradient59----
-	--Script60--
-	local Script60 = Instance.new("Script",ScreenGui1)
-	Script60["Name"] = "LibUse"
-	----Script60----
-	--Script61--
-	local Script61 = Instance.new("Script",ScreenGui1)
-	Script61["Name"] = "CompileLoader"
-	Script61["Enabled"] = false
-	----Script61----
-	--TextButton62--
-	local TextButton62 = Instance.new("TextButton",ScreenGui1)
-	TextButton62["LayoutOrder"] = 1
-	TextButton62["TextWrapped"] = true
-	TextButton62["AutoLocalize"] = false
-	TextButton62["TextColor3"] = Color3.new(1, 0.501961, 0.592157)
-	TextButton62["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
-	TextButton62["Text"] = "Piggy Hub V2"
-	TextButton62["TextXAlignment"] = Enum.TextXAlignment.Left
-	TextButton62["TextSize"] = 14
-	TextButton62["AnchorPoint"] = Vector2.new(0.0500000007, 0.5)
-	TextButton62["Font"] = Enum.Font.Oswald
-	TextButton62["Name"] = "Toggle"
-	TextButton62["Position"] = UDim2.new(0.0064275763, 0, 0.0995024815, 0)
-	TextButton62["BackgroundTransparency"] = 0.30000001192092896
-	TextButton62["Size"] = UDim2.new(0.130617976, 0, 0.0740825459, 0)
-	TextButton62["TextScaled"] = true
-	TextButton62["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
-	----TextButton62----
-	--UICorner63--
-	local UICorner63 = Instance.new("UICorner",TextButton62)
-	UICorner63["CornerRadius"] = UDim.new(0.100000001, 0)
-	----UICorner63----
-	--UIPadding64--
-	local UIPadding64 = Instance.new("UIPadding",TextButton62)
-	UIPadding64["PaddingLeft"] = UDim.new(0.200000003, 0)
-	UIPadding64["PaddingRight"] = UDim.new(0.0500000007, 0)
-	----UIPadding64----
-	--UIStroke65--
-	local UIStroke65 = Instance.new("UIStroke",TextButton62)
-	UIStroke65["Color"] = Color3.new(1, 0.501961, 0.592157)
-	UIStroke65["Thickness"] = 3
-	UIStroke65["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
-	----UIStroke65----
-	--TextButton66--
-	local TextButton66 = Instance.new("TextButton",ScreenGui1)
-	TextButton66["Visible"] = false
-	TextButton66["TextWrapped"] = true
-	TextButton66["AnchorPoint"] = Vector2.new(0.0500000007, 0.5)
-	TextButton66["TextSize"] = 14
-	TextButton66["Size"] = UDim2.new(0.130617976, 0, 0.0740825459, 0)
-	TextButton66["AutoLocalize"] = false
-	TextButton66["TextColor3"] = Color3.new(1, 0.870588, 0.741176)
-	TextButton66["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
-	TextButton66["Text"] = "Run Info"
-	TextButton66["TextXAlignment"] = Enum.TextXAlignment.Left
-	TextButton66["Font"] = Enum.Font.Oswald
-	TextButton66["Name"] = "StatsBtn"
-	TextButton66["Position"] = UDim2.new(0.001999998, 0, 0.589552224, 0)
-	TextButton66["LayoutOrder"] = 1
-	TextButton66["BackgroundTransparency"] = 0.30000001192092896
-	TextButton66["TextScaled"] = true
-	TextButton66["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
-	----TextButton66----
-	--UICorner67--
-	local UICorner67 = Instance.new("UICorner",TextButton66)
-	UICorner67["CornerRadius"] = UDim.new(0.100000001, 0)
-	----UICorner67----
-	--UIPadding68--
-	local UIPadding68 = Instance.new("UIPadding",TextButton66)
-	UIPadding68["PaddingLeft"] = UDim.new(0.200000003, 0)
-	UIPadding68["PaddingRight"] = UDim.new(0.0500000007, 0)
-	----UIPadding68----
-	--UIStroke69--
-	local UIStroke69 = Instance.new("UIStroke",TextButton66)
-	UIStroke69["Color"] = Color3.new(1, 0.501961, 0.592157)
-	UIStroke69["Thickness"] = 3
-	UIStroke69["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
-	----UIStroke69----
-	--Frame70--
-	local Frame70 = Instance.new("Frame",ScreenGui1)
-	Frame70["LayoutOrder"] = 3
-	Frame70["AutoLocalize"] = false
-	Frame70["Active"] = true
-	Frame70["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
-	Frame70["AnchorPoint"] = Vector2.new(0.5, 0.5)
-	Frame70["Visible"] = false
-	Frame70["BackgroundTransparency"] = 0.3499999940395355
-	Frame70["Position"] = UDim2.new(0.458260268, 0, 0.579999983, 0)
-	Frame70["Size"] = UDim2.new(0.699999988, 0, 0.600000024, 0)
-	Frame70["Name"] = "MainUi"
-	Frame70["BorderSizePixel"] = 0
-	Frame70["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
-	----Frame70----
-	--UICorner71--
-	local UICorner71 = Instance.new("UICorner",Frame70)
-	----UICorner71----
-	--UIStroke72--
-	local UIStroke72 = Instance.new("UIStroke",Frame70)
-	UIStroke72["Color"] = Color3.new(1, 0.501961, 0.592157)
-	UIStroke72["Thickness"] = 4
-	UIStroke72["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
-	----UIStroke72----
-	--UIStroke73--
-	local UIStroke73 = Instance.new("UIStroke",UIStroke72)
-	UIStroke73["Color"] = Color3.new(1, 0.501961, 0.592157)
-	UIStroke73["Thickness"] = 3.4000000953674316
-	UIStroke73["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
-	----UIStroke73----
-	--TextLabel74--
-	local TextLabel74 = Instance.new("TextLabel",Frame70)
-	TextLabel74["LayoutOrder"] = 3
-	TextLabel74["TextWrapped"] = true
-	TextLabel74["AnchorPoint"] = Vector2.new(0.5, 1)
-	TextLabel74["BorderSizePixel"] = 0
-	TextLabel74["Size"] = UDim2.new(0.214014798, 0, 1.00623477, 0)
-	TextLabel74["RichText"] = true
-	TextLabel74["AutoLocalize"] = false
-	TextLabel74["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
-	TextLabel74["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
-	TextLabel74["Text"] = ""
-	TextLabel74["Font"] = Enum.Font.Oswald
-	TextLabel74["Name"] = "Title"
-	TextLabel74["Position"] = UDim2.new(1.10700738, 0, 1.00623477, 0)
-	TextLabel74["TextSize"] = 50
-	TextLabel74["BackgroundTransparency"] = 1
-	TextLabel74["TextScaled"] = true
-	TextLabel74["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
-	----TextLabel74----
-	--UICorner75--
-	local UICorner75 = Instance.new("UICorner",TextLabel74)
-	----UICorner75----
-	--UIGridLayout76--
-	local UIGridLayout76 = Instance.new("UIGridLayout",TextLabel74)
-	UIGridLayout76["VerticalAlignment"] = Enum.VerticalAlignment.Center
-	UIGridLayout76["FillDirection"] = Enum.FillDirection.Vertical
-	UIGridLayout76["CellPadding"] = UDim2.new(0, 0, 0.0250000004, 0)
-	UIGridLayout76["SortOrder"] = Enum.SortOrder.LayoutOrder
-	UIGridLayout76["HorizontalAlignment"] = Enum.HorizontalAlignment.Center
-	UIGridLayout76["CellSize"] = UDim2.new(0.899999976, 0, 0.131999999, 0)
-	----UIGridLayout76----
-	--TextButton77--
-	local TextButton77 = Instance.new("TextButton",TextLabel74)
-	TextButton77["TextWrapped"] = true
-	TextButton77["TextColor3"] = Color3.new(1, 0.501961, 0.592157)
-	TextButton77["BorderColor3"] = Color3.new(0, 0, 0)
-	TextButton77["Text"] = "ESP"
-	TextButton77["TextXAlignment"] = Enum.TextXAlignment.Left
-	TextButton77["TextSize"] = 14
-	TextButton77["TextScaled"] = true
-	TextButton77["Font"] = Enum.Font.Oswald
-	TextButton77["BackgroundTransparency"] = 0.5
-	TextButton77["Position"] = UDim2.new(-0.147082791, 0, 2.28603077, 0)
-	TextButton77["Name"] = "ESP"
-	TextButton77["Size"] = UDim2.new(0.333249986, 0, 0.75000006, 0)
-	TextButton77["BorderSizePixel"] = 0
-	TextButton77["BackgroundColor3"] = Color3.new(0.470588, 0.435294, 0.356863)
-	----TextButton77----
-	--UICorner78--
-	local UICorner78 = Instance.new("UICorner",TextButton77)
-	----UICorner78----
-	--UIPadding79--
-	local UIPadding79 = Instance.new("UIPadding",TextButton77)
-	UIPadding79["PaddingBottom"] = UDim.new(0.150000006, 0)
-	UIPadding79["PaddingTop"] = UDim.new(0.100000001, 0)
-	UIPadding79["PaddingLeft"] = UDim.new(0.100000001, 0)
-	UIPadding79["PaddingRight"] = UDim.new(0.100000001, 0)
-	----UIPadding79----
-	--UIStroke80--
-	local UIStroke80 = Instance.new("UIStroke",TextButton77)
-	UIStroke80["Color"] = Color3.new(1, 0.501961, 0.592157)
-	UIStroke80["Thickness"] = 4
-	UIStroke80["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
-	----UIStroke80----
-	--UIGradient81--
-	local UIGradient81 = Instance.new("UIGradient",TextButton77)
-	UIGradient81["Rotation"] = 90
-	UIGradient81["Color"] = ColorSequence.new{
-		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
-		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
-		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
+	--TextButton60--
+	local TextButton60 = Instance.new("TextButton",Folder3)
+	TextButton60["TextWrapped"] = true
+	TextButton60["TextColor3"] = Color3.new(1, 0.501961, 0.592157)
+	TextButton60["BorderColor3"] = Color3.new(0, 0, 0)
+	TextButton60["Text"] = "Red Key"
+	TextButton60["TextSize"] = 14
+	TextButton60["Font"] = Enum.Font.SourceSansBold
+	TextButton60["Name"] = "ItemTemplate"
+	TextButton60["Position"] = UDim2.new(3.99116118e-08, 0, 7.051338e-08, 0)
+	TextButton60["TextScaled"] = true
+	TextButton60["Size"] = UDim2.new(1, 0, 0.166999996, 0)
+	TextButton60["BorderSizePixel"] = 0
+	TextButton60["BackgroundColor3"] = Color3.new(1, 1, 1)
+	----TextButton60----
+	--UIGradient61--
+	local UIGradient61 = Instance.new("UIGradient",TextButton60)
+	UIGradient61["Rotation"] = 90
+	UIGradient61["Color"] = ColorSequence.new{
+		ColorSequenceKeypoint.new(0,Color3.new(1,0.501961,0.592157)),
+		ColorSequenceKeypoint.new(0.414309,Color3.new(0.996078,0.494118,0.521569)),
+		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.560784,0.517647))
 	}
-	----UIGradient81----
-	--TextButton82--
-	local TextButton82 = Instance.new("TextButton",TextButton77)
-	TextButton82["TextWrapped"] = true
-	TextButton82["TextScaled"] = true
-	TextButton82["TextColor3"] = Color3.new(0.847059, 0.729412, 0.54902)
-	TextButton82["BorderColor3"] = Color3.new(0, 0, 0)
-	TextButton82["Text"] = ""
-	TextButton82["TextSize"] = 14
-	TextButton82["AutoButtonColor"] = false
-	TextButton82["AnchorPoint"] = Vector2.new(0, 0.5)
-	TextButton82["Font"] = Enum.Font.Unknown
-	TextButton82["Name"] = "Toggle"
-	TextButton82["Position"] = UDim2.new(0.890631974, 0, 0.526479542, 0)
-	TextButton82["Size"] = UDim2.new(0.198677853, 0, 0.93288523, 0)
-	TextButton82["BackgroundTransparency"] = 1
-	TextButton82["BorderSizePixel"] = 0
-	TextButton82["BackgroundColor3"] = Color3.new(1, 0.501961, 0.592157)
-	----TextButton82----
-	--UICorner83--
-	local UICorner83 = Instance.new("UICorner",TextButton82)
-	----UICorner83----
-	--UIGradient84--
-	local UIGradient84 = Instance.new("UIGradient",TextButton82)
-	UIGradient84["Rotation"] = 90
-	UIGradient84["Color"] = ColorSequence.new{
-		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
-		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
-		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
+	----UIGradient61----
+	--UICorner62--
+	local UICorner62 = Instance.new("UICorner",TextButton60)
+	----UICorner62----
+	--UIStroke63--
+	local UIStroke63 = Instance.new("UIStroke",TextButton60)
+	UIStroke63["Color"] = Color3.new(1, 0.501961, 0.592157)
+	UIStroke63["Thickness"] = 4
+	UIStroke63["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
+	----UIStroke63----
+	--UIGradient64--
+	local UIGradient64 = Instance.new("UIGradient",UIStroke63)
+	UIGradient64["Rotation"] = 90
+	UIGradient64["Color"] = ColorSequence.new{
+		ColorSequenceKeypoint.new(0,Color3.new(1,0.501961,0.592157)),
+		ColorSequenceKeypoint.new(0.414309,Color3.new(0.996078,0.494118,0.521569)),
+		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.560784,0.517647))
 	}
-	----UIGradient84----
-	--UIStroke85--
-	local UIStroke85 = Instance.new("UIStroke",TextButton82)
-	UIStroke85["Color"] = Color3.new(1, 0.501961, 0.592157)
-	UIStroke85["Thickness"] = 4
-	UIStroke85["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
-	----UIStroke85----
-	--UIGradient86--
-	local UIGradient86 = Instance.new("UIGradient",UIStroke85)
-	UIGradient86["Rotation"] = 90
-	UIGradient86["Color"] = ColorSequence.new{
-		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
-		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
-		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
+	----UIGradient64----
+	--ViewportFrame65--
+	local ViewportFrame65 = Instance.new("ViewportFrame",TextButton60)
+	ViewportFrame65["AnchorPoint"] = Vector2.new(0.5, 0.5)
+	ViewportFrame65["Size"] = UDim2.new(0.0764387101, 0, 1, 0)
+	ViewportFrame65["Active"] = true
+	ViewportFrame65["BorderColor3"] = Color3.new(0, 0, 0)
+	ViewportFrame65["Position"] = UDim2.new(0.0382192954, 0, 0.5, 0)
+	ViewportFrame65["BorderSizePixel"] = 0
+	ViewportFrame65["BackgroundColor3"] = Color3.new(1, 1, 1)
+	----ViewportFrame65----
+	--UIStroke66--
+	local UIStroke66 = Instance.new("UIStroke",ViewportFrame65)
+	UIStroke66["Color"] = Color3.new(1, 0.501961, 0.592157)
+	UIStroke66["LineJoinMode"] = Enum.LineJoinMode.Miter
+	UIStroke66["Thickness"] = 4
+	UIStroke66["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
+	----UIStroke66----
+	--UIGradient67--
+	local UIGradient67 = Instance.new("UIGradient",UIStroke66)
+	UIGradient67["Rotation"] = 90
+	UIGradient67["Color"] = ColorSequence.new{
+		ColorSequenceKeypoint.new(0,Color3.new(1,0.501961,0.592157)),
+		ColorSequenceKeypoint.new(0.414309,Color3.new(0.996078,0.494118,0.521569)),
+		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.560784,0.517647))
 	}
-	----UIGradient86----
+	----UIGradient67----
+	--UIGradient68--
+	local UIGradient68 = Instance.new("UIGradient",ViewportFrame65)
+	UIGradient68["Rotation"] = 90
+	UIGradient68["Color"] = ColorSequence.new{
+		ColorSequenceKeypoint.new(0,Color3.new(1,0.501961,0.592157)),
+		ColorSequenceKeypoint.new(0.414309,Color3.new(0.996078,0.494118,0.521569)),
+		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.560784,0.517647))
+	}
+	----UIGradient68----
+	--ObjectValue69--
+	local ObjectValue69 = Instance.new("ObjectValue",TextButton60)
+	ObjectValue69["Name"] = "Object"
+	----ObjectValue69----
+	--Script70--
+	local Script70 = Instance.new("Script",ScreenGui1)
+	Script70["Name"] = "LibUse"
+	----Script70----
+	--Script71--
+	local Script71 = Instance.new("Script",ScreenGui1)
+	Script71["Name"] = "CompileLoader"
+	Script71["Enabled"] = false
+	----Script71----
+	--TextButton72--
+	local TextButton72 = Instance.new("TextButton",ScreenGui1)
+	TextButton72["LayoutOrder"] = 1
+	TextButton72["TextWrapped"] = true
+	TextButton72["AutoLocalize"] = false
+	TextButton72["TextColor3"] = Color3.new(1, 0.501961, 0.592157)
+	TextButton72["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
+	TextButton72["Text"] = "Piggy Hub V2"
+	TextButton72["TextXAlignment"] = Enum.TextXAlignment.Left
+	TextButton72["TextSize"] = 14
+	TextButton72["AnchorPoint"] = Vector2.new(0.0500000007, 0.5)
+	TextButton72["Font"] = Enum.Font.Oswald
+	TextButton72["Name"] = "Toggle"
+	TextButton72["Position"] = UDim2.new(0.0064275763, 0, 0.0995024815, 0)
+	TextButton72["BackgroundTransparency"] = 0.30000001192092896
+	TextButton72["Size"] = UDim2.new(0.130617976, 0, 0.0740825459, 0)
+	TextButton72["TextScaled"] = true
+	TextButton72["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
+	----TextButton72----
+	--UICorner73--
+	local UICorner73 = Instance.new("UICorner",TextButton72)
+	UICorner73["CornerRadius"] = UDim.new(0.100000001, 0)
+	----UICorner73----
+	--UIPadding74--
+	local UIPadding74 = Instance.new("UIPadding",TextButton72)
+	UIPadding74["PaddingLeft"] = UDim.new(0.200000003, 0)
+	UIPadding74["PaddingRight"] = UDim.new(0.0500000007, 0)
+	----UIPadding74----
+	--UIStroke75--
+	local UIStroke75 = Instance.new("UIStroke",TextButton72)
+	UIStroke75["Color"] = Color3.new(1, 0.501961, 0.592157)
+	UIStroke75["Thickness"] = 3
+	UIStroke75["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
+	----UIStroke75----
+	--TextButton76--
+	local TextButton76 = Instance.new("TextButton",ScreenGui1)
+	TextButton76["Visible"] = false
+	TextButton76["TextWrapped"] = true
+	TextButton76["AnchorPoint"] = Vector2.new(0.0500000007, 0.5)
+	TextButton76["TextSize"] = 14
+	TextButton76["Size"] = UDim2.new(0.130617976, 0, 0.0740825459, 0)
+	TextButton76["AutoLocalize"] = false
+	TextButton76["TextColor3"] = Color3.new(1, 0.870588, 0.741176)
+	TextButton76["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
+	TextButton76["Text"] = "Run Info"
+	TextButton76["TextXAlignment"] = Enum.TextXAlignment.Left
+	TextButton76["Font"] = Enum.Font.Oswald
+	TextButton76["Name"] = "StatsBtn"
+	TextButton76["Position"] = UDim2.new(0.001999998, 0, 0.589552224, 0)
+	TextButton76["LayoutOrder"] = 1
+	TextButton76["BackgroundTransparency"] = 0.30000001192092896
+	TextButton76["TextScaled"] = true
+	TextButton76["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
+	----TextButton76----
+	--UICorner77--
+	local UICorner77 = Instance.new("UICorner",TextButton76)
+	UICorner77["CornerRadius"] = UDim.new(0.100000001, 0)
+	----UICorner77----
+	--UIPadding78--
+	local UIPadding78 = Instance.new("UIPadding",TextButton76)
+	UIPadding78["PaddingLeft"] = UDim.new(0.200000003, 0)
+	UIPadding78["PaddingRight"] = UDim.new(0.0500000007, 0)
+	----UIPadding78----
+	--UIStroke79--
+	local UIStroke79 = Instance.new("UIStroke",TextButton76)
+	UIStroke79["Color"] = Color3.new(1, 0.501961, 0.592157)
+	UIStroke79["Thickness"] = 3
+	UIStroke79["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
+	----UIStroke79----
+	--Frame80--
+	local Frame80 = Instance.new("Frame",ScreenGui1)
+	Frame80["LayoutOrder"] = 3
+	Frame80["AutoLocalize"] = false
+	Frame80["Active"] = true
+	Frame80["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
+	Frame80["AnchorPoint"] = Vector2.new(0.5, 0.5)
+	Frame80["Visible"] = false
+	Frame80["BackgroundTransparency"] = 0.3499999940395355
+	Frame80["Position"] = UDim2.new(0.458260268, 0, 0.579999983, 0)
+	Frame80["Size"] = UDim2.new(0.699999988, 0, 0.600000024, 0)
+	Frame80["Name"] = "MainUi"
+	Frame80["BorderSizePixel"] = 0
+	Frame80["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
+	----Frame80----
+	--UICorner81--
+	local UICorner81 = Instance.new("UICorner",Frame80)
+	----UICorner81----
+	--UIStroke82--
+	local UIStroke82 = Instance.new("UIStroke",Frame80)
+	UIStroke82["Color"] = Color3.new(1, 0.501961, 0.592157)
+	UIStroke82["Thickness"] = 4
+	UIStroke82["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
+	----UIStroke82----
+	--UIStroke83--
+	local UIStroke83 = Instance.new("UIStroke",UIStroke82)
+	UIStroke83["Color"] = Color3.new(1, 0.501961, 0.592157)
+	UIStroke83["Thickness"] = 3.4000000953674316
+	UIStroke83["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
+	----UIStroke83----
+	--TextLabel84--
+	local TextLabel84 = Instance.new("TextLabel",Frame80)
+	TextLabel84["LayoutOrder"] = 3
+	TextLabel84["TextWrapped"] = true
+	TextLabel84["AnchorPoint"] = Vector2.new(0.5, 1)
+	TextLabel84["BorderSizePixel"] = 0
+	TextLabel84["Size"] = UDim2.new(0.214014798, 0, 1.00623477, 0)
+	TextLabel84["RichText"] = true
+	TextLabel84["AutoLocalize"] = false
+	TextLabel84["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
+	TextLabel84["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
+	TextLabel84["Text"] = ""
+	TextLabel84["Font"] = Enum.Font.Oswald
+	TextLabel84["Name"] = "Title"
+	TextLabel84["Position"] = UDim2.new(1.10700738, 0, 1.00623477, 0)
+	TextLabel84["TextSize"] = 50
+	TextLabel84["BackgroundTransparency"] = 1
+	TextLabel84["TextScaled"] = true
+	TextLabel84["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
+	----TextLabel84----
+	--UICorner85--
+	local UICorner85 = Instance.new("UICorner",TextLabel84)
+	----UICorner85----
+	--UIGridLayout86--
+	local UIGridLayout86 = Instance.new("UIGridLayout",TextLabel84)
+	UIGridLayout86["VerticalAlignment"] = Enum.VerticalAlignment.Center
+	UIGridLayout86["FillDirection"] = Enum.FillDirection.Vertical
+	UIGridLayout86["CellPadding"] = UDim2.new(0, 0, 0.0250000004, 0)
+	UIGridLayout86["SortOrder"] = Enum.SortOrder.LayoutOrder
+	UIGridLayout86["HorizontalAlignment"] = Enum.HorizontalAlignment.Center
+	UIGridLayout86["CellSize"] = UDim2.new(0.899999976, 0, 0.131999999, 0)
+	----UIGridLayout86----
 	--TextButton87--
-	local TextButton87 = Instance.new("TextButton",TextLabel74)
+	local TextButton87 = Instance.new("TextButton",TextLabel84)
 	TextButton87["TextWrapped"] = true
 	TextButton87["TextColor3"] = Color3.new(1, 0.501961, 0.592157)
 	TextButton87["BorderColor3"] = Color3.new(0, 0, 0)
-	TextButton87["Text"] = "Bypasses"
-	TextButton87["TextScaled"] = true
+	TextButton87["Text"] = "ESP"
+	TextButton87["TextXAlignment"] = Enum.TextXAlignment.Left
 	TextButton87["TextSize"] = 14
+	TextButton87["TextScaled"] = true
 	TextButton87["Font"] = Enum.Font.Oswald
 	TextButton87["BackgroundTransparency"] = 0.5
-	TextButton87["TextXAlignment"] = Enum.TextXAlignment.Left
+	TextButton87["Position"] = UDim2.new(-0.147082791, 0, 2.28603077, 0)
+	TextButton87["Name"] = "ESP"
 	TextButton87["Size"] = UDim2.new(0.333249986, 0, 0.75000006, 0)
-	TextButton87["Name"] = "Bypasses"
 	TextButton87["BorderSizePixel"] = 0
 	TextButton87["BackgroundColor3"] = Color3.new(0.470588, 0.435294, 0.356863)
 	----TextButton87----
@@ -839,18 +834,18 @@ local function createGui(parent)
 	}
 	----UIGradient96----
 	--TextButton97--
-	local TextButton97 = Instance.new("TextButton",TextLabel74)
+	local TextButton97 = Instance.new("TextButton",TextLabel84)
 	TextButton97["TextWrapped"] = true
 	TextButton97["TextColor3"] = Color3.new(1, 0.501961, 0.592157)
 	TextButton97["BorderColor3"] = Color3.new(0, 0, 0)
-	TextButton97["Text"] = "More"
+	TextButton97["Text"] = "Bypasses"
 	TextButton97["TextScaled"] = true
 	TextButton97["TextSize"] = 14
 	TextButton97["Font"] = Enum.Font.Oswald
 	TextButton97["BackgroundTransparency"] = 0.5
 	TextButton97["TextXAlignment"] = Enum.TextXAlignment.Left
 	TextButton97["Size"] = UDim2.new(0.333249986, 0, 0.75000006, 0)
-	TextButton97["Name"] = "More"
+	TextButton97["Name"] = "Bypasses"
 	TextButton97["BorderSizePixel"] = 0
 	TextButton97["BackgroundColor3"] = Color3.new(0.470588, 0.435294, 0.356863)
 	----TextButton97----
@@ -891,7 +886,7 @@ local function createGui(parent)
 	TextButton102["AnchorPoint"] = Vector2.new(0, 0.5)
 	TextButton102["Font"] = Enum.Font.Unknown
 	TextButton102["Name"] = "Toggle"
-	TextButton102["Position"] = UDim2.new(0.890631974, 0, 0.526478708, 0)
+	TextButton102["Position"] = UDim2.new(0.890631974, 0, 0.526479542, 0)
 	TextButton102["Size"] = UDim2.new(0.198677853, 0, 0.93288523, 0)
 	TextButton102["BackgroundTransparency"] = 1
 	TextButton102["BorderSizePixel"] = 0
@@ -924,209 +919,162 @@ local function createGui(parent)
 		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
 	}
 	----UIGradient106----
-	--UIPadding107--
-	local UIPadding107 = Instance.new("UIPadding",TextLabel74)
-	UIPadding107["PaddingBottom"] = UDim.new(0.150000006, 0)
-	UIPadding107["PaddingTop"] = UDim.new(0.100000001, 0)
-	----UIPadding107----
-	--ScrollingFrame108--
-	local ScrollingFrame108 = Instance.new("ScrollingFrame",Frame70)
-	ScrollingFrame108["ScrollBarImageColor3"] = Color3.new(0, 0, 0)
-	ScrollingFrame108["Active"] = true
-	ScrollingFrame108["BorderColor3"] = Color3.new(0, 0, 0)
-	ScrollingFrame108["ScrollBarThickness"] = 0
-	ScrollingFrame108["AutomaticCanvasSize"] = Enum.AutomaticSize.Y
-	ScrollingFrame108["CanvasSize"] = UDim2.new(0, 0, 0, 0)
-	ScrollingFrame108["Name"] = "ESP"
-	ScrollingFrame108["ScrollingDirection"] = Enum.ScrollingDirection.Y
-	ScrollingFrame108["Size"] = UDim2.new(1, 0, 1, 0)
-	ScrollingFrame108["BackgroundTransparency"] = 1
-	ScrollingFrame108["BorderSizePixel"] = 0
-	ScrollingFrame108["BackgroundColor3"] = Color3.new(1, 1, 1)
-	----ScrollingFrame108----
-	--UIListLayout109--
-	local UIListLayout109 = Instance.new("UIListLayout",ScrollingFrame108)
-	UIListLayout109["SortOrder"] = Enum.SortOrder.LayoutOrder
-	UIListLayout109["Padding"] = UDim.new(0, 15)
-	----UIListLayout109----
-	--UIPadding110--
-	local UIPadding110 = Instance.new("UIPadding",ScrollingFrame108)
-	UIPadding110["PaddingBottom"] = UDim.new(0.0500000007, 0)
-	UIPadding110["PaddingTop"] = UDim.new(0.0500000007, 0)
-	UIPadding110["PaddingLeft"] = UDim.new(0.0250000004, 0)
-	UIPadding110["PaddingRight"] = UDim.new(0.0250000004, 0)
-	----UIPadding110----
-	--TextLabel111--
-	local TextLabel111 = Instance.new("TextLabel",ScrollingFrame108)
-	TextLabel111["LayoutOrder"] = 999999999
-	TextLabel111["TextWrapped"] = true
-	TextLabel111["Active"] = true
-	TextLabel111["AnchorPoint"] = Vector2.new(0.5, 1)
-	TextLabel111["BorderSizePixel"] = 0
-	TextLabel111["Size"] = UDim2.new(1, 0, 0.200000003, 0)
-	TextLabel111["RichText"] = true
-	TextLabel111["AutoLocalize"] = false
-	TextLabel111["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
-	TextLabel111["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
-	TextLabel111["Text"] = ""
-	TextLabel111["Font"] = Enum.Font.Oswald
-	TextLabel111["Name"] = "EndBarrier"
-	TextLabel111["Position"] = UDim2.new(0.5, 0, -0.0799999982, 0)
-	TextLabel111["TextSize"] = 50
-	TextLabel111["BackgroundTransparency"] = 1
-	TextLabel111["TextScaled"] = true
-	TextLabel111["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
-	----TextLabel111----
-	--UIGradient112--
-	local UIGradient112 = Instance.new("UIGradient",TextLabel111)
-	UIGradient112["Rotation"] = 90
-	UIGradient112["Color"] = ColorSequence.new{
+	--TextButton107--
+	local TextButton107 = Instance.new("TextButton",TextLabel84)
+	TextButton107["TextWrapped"] = true
+	TextButton107["TextColor3"] = Color3.new(1, 0.501961, 0.592157)
+	TextButton107["BorderColor3"] = Color3.new(0, 0, 0)
+	TextButton107["Text"] = "More"
+	TextButton107["TextScaled"] = true
+	TextButton107["TextSize"] = 14
+	TextButton107["Font"] = Enum.Font.Oswald
+	TextButton107["BackgroundTransparency"] = 0.5
+	TextButton107["TextXAlignment"] = Enum.TextXAlignment.Left
+	TextButton107["Size"] = UDim2.new(0.333249986, 0, 0.75000006, 0)
+	TextButton107["Name"] = "More"
+	TextButton107["BorderSizePixel"] = 0
+	TextButton107["BackgroundColor3"] = Color3.new(0.470588, 0.435294, 0.356863)
+	----TextButton107----
+	--UICorner108--
+	local UICorner108 = Instance.new("UICorner",TextButton107)
+	----UICorner108----
+	--UIPadding109--
+	local UIPadding109 = Instance.new("UIPadding",TextButton107)
+	UIPadding109["PaddingBottom"] = UDim.new(0.150000006, 0)
+	UIPadding109["PaddingTop"] = UDim.new(0.100000001, 0)
+	UIPadding109["PaddingLeft"] = UDim.new(0.100000001, 0)
+	UIPadding109["PaddingRight"] = UDim.new(0.100000001, 0)
+	----UIPadding109----
+	--UIStroke110--
+	local UIStroke110 = Instance.new("UIStroke",TextButton107)
+	UIStroke110["Color"] = Color3.new(1, 0.501961, 0.592157)
+	UIStroke110["Thickness"] = 4
+	UIStroke110["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
+	----UIStroke110----
+	--UIGradient111--
+	local UIGradient111 = Instance.new("UIGradient",TextButton107)
+	UIGradient111["Rotation"] = 90
+	UIGradient111["Color"] = ColorSequence.new{
 		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
 		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
 		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
 	}
-	----UIGradient112----
-	--UIAspectRatioConstraint113--
-	local UIAspectRatioConstraint113 = Instance.new("UIAspectRatioConstraint",Frame70)
-	UIAspectRatioConstraint113["AspectRatio"] = 2.3014094829559326
-	----UIAspectRatioConstraint113----
-	--ScrollingFrame114--
-	local ScrollingFrame114 = Instance.new("ScrollingFrame",Frame70)
-	ScrollingFrame114["ScrollBarImageColor3"] = Color3.new(0, 0, 0)
-	ScrollingFrame114["Active"] = true
-	ScrollingFrame114["BorderColor3"] = Color3.new(0, 0, 0)
-	ScrollingFrame114["ScrollBarThickness"] = 0
-	ScrollingFrame114["AutomaticCanvasSize"] = Enum.AutomaticSize.Y
-	ScrollingFrame114["CanvasSize"] = UDim2.new(0, 0, 0, 0)
-	ScrollingFrame114["Name"] = "Bypasses"
-	ScrollingFrame114["ScrollingDirection"] = Enum.ScrollingDirection.Y
-	ScrollingFrame114["Size"] = UDim2.new(1, 0, 1, 0)
-	ScrollingFrame114["BackgroundTransparency"] = 1
-	ScrollingFrame114["BorderSizePixel"] = 0
-	ScrollingFrame114["BackgroundColor3"] = Color3.new(1, 1, 1)
-	----ScrollingFrame114----
-	--UIListLayout115--
-	local UIListLayout115 = Instance.new("UIListLayout",ScrollingFrame114)
-	UIListLayout115["SortOrder"] = Enum.SortOrder.LayoutOrder
-	UIListLayout115["Padding"] = UDim.new(0, 15)
-	----UIListLayout115----
-	--UIPadding116--
-	local UIPadding116 = Instance.new("UIPadding",ScrollingFrame114)
-	UIPadding116["PaddingBottom"] = UDim.new(0.0500000007, 0)
-	UIPadding116["PaddingTop"] = UDim.new(0.0500000007, 0)
-	UIPadding116["PaddingLeft"] = UDim.new(0.0250000004, 0)
-	UIPadding116["PaddingRight"] = UDim.new(0.0250000004, 0)
-	----UIPadding116----
-	--TextLabel117--
-	local TextLabel117 = Instance.new("TextLabel",ScrollingFrame114)
-	TextLabel117["LayoutOrder"] = 999999999
-	TextLabel117["TextWrapped"] = true
-	TextLabel117["Active"] = true
-	TextLabel117["AnchorPoint"] = Vector2.new(0.5, 1)
-	TextLabel117["BorderSizePixel"] = 0
-	TextLabel117["Size"] = UDim2.new(1, 0, 0.200000003, 0)
-	TextLabel117["RichText"] = true
-	TextLabel117["AutoLocalize"] = false
-	TextLabel117["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
-	TextLabel117["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
-	TextLabel117["Text"] = ""
-	TextLabel117["Font"] = Enum.Font.Oswald
-	TextLabel117["Name"] = "EndBarrier"
-	TextLabel117["Position"] = UDim2.new(0.5, 0, -0.0799999982, 0)
-	TextLabel117["TextSize"] = 50
-	TextLabel117["BackgroundTransparency"] = 1
-	TextLabel117["TextScaled"] = true
-	TextLabel117["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
-	----TextLabel117----
-	--UIGradient118--
-	local UIGradient118 = Instance.new("UIGradient",TextLabel117)
-	UIGradient118["Rotation"] = 90
-	UIGradient118["Color"] = ColorSequence.new{
+	----UIGradient111----
+	--TextButton112--
+	local TextButton112 = Instance.new("TextButton",TextButton107)
+	TextButton112["TextWrapped"] = true
+	TextButton112["TextScaled"] = true
+	TextButton112["TextColor3"] = Color3.new(0.847059, 0.729412, 0.54902)
+	TextButton112["BorderColor3"] = Color3.new(0, 0, 0)
+	TextButton112["Text"] = ""
+	TextButton112["TextSize"] = 14
+	TextButton112["AutoButtonColor"] = false
+	TextButton112["AnchorPoint"] = Vector2.new(0, 0.5)
+	TextButton112["Font"] = Enum.Font.Unknown
+	TextButton112["Name"] = "Toggle"
+	TextButton112["Position"] = UDim2.new(0.890631974, 0, 0.526478708, 0)
+	TextButton112["Size"] = UDim2.new(0.198677853, 0, 0.93288523, 0)
+	TextButton112["BackgroundTransparency"] = 1
+	TextButton112["BorderSizePixel"] = 0
+	TextButton112["BackgroundColor3"] = Color3.new(1, 0.501961, 0.592157)
+	----TextButton112----
+	--UICorner113--
+	local UICorner113 = Instance.new("UICorner",TextButton112)
+	----UICorner113----
+	--UIGradient114--
+	local UIGradient114 = Instance.new("UIGradient",TextButton112)
+	UIGradient114["Rotation"] = 90
+	UIGradient114["Color"] = ColorSequence.new{
 		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
 		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
 		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
 	}
-	----UIGradient118----
-	--ScrollingFrame119--
-	local ScrollingFrame119 = Instance.new("ScrollingFrame",Frame70)
-	ScrollingFrame119["ScrollBarImageColor3"] = Color3.new(0, 0, 0)
-	ScrollingFrame119["Active"] = true
-	ScrollingFrame119["BorderColor3"] = Color3.new(0, 0, 0)
-	ScrollingFrame119["ScrollBarThickness"] = 0
-	ScrollingFrame119["AutomaticCanvasSize"] = Enum.AutomaticSize.Y
-	ScrollingFrame119["CanvasSize"] = UDim2.new(0, 0, 0, 0)
-	ScrollingFrame119["Name"] = "More"
-	ScrollingFrame119["ScrollingDirection"] = Enum.ScrollingDirection.Y
-	ScrollingFrame119["Size"] = UDim2.new(1, 0, 1, 0)
-	ScrollingFrame119["BackgroundTransparency"] = 1
-	ScrollingFrame119["BorderSizePixel"] = 0
-	ScrollingFrame119["BackgroundColor3"] = Color3.new(1, 1, 1)
-	----ScrollingFrame119----
-	--UIListLayout120--
-	local UIListLayout120 = Instance.new("UIListLayout",ScrollingFrame119)
-	UIListLayout120["SortOrder"] = Enum.SortOrder.LayoutOrder
-	UIListLayout120["Padding"] = UDim.new(0, 15)
-	----UIListLayout120----
-	--UIPadding121--
-	local UIPadding121 = Instance.new("UIPadding",ScrollingFrame119)
-	UIPadding121["PaddingBottom"] = UDim.new(0.0500000007, 0)
-	UIPadding121["PaddingTop"] = UDim.new(0.0500000007, 0)
-	UIPadding121["PaddingLeft"] = UDim.new(0.0250000004, 0)
-	UIPadding121["PaddingRight"] = UDim.new(0.0250000004, 0)
-	----UIPadding121----
-	--TextLabel122--
-	local TextLabel122 = Instance.new("TextLabel",ScrollingFrame119)
-	TextLabel122["LayoutOrder"] = 999999999
-	TextLabel122["TextWrapped"] = true
-	TextLabel122["Active"] = true
-	TextLabel122["AnchorPoint"] = Vector2.new(0.5, 1)
-	TextLabel122["BorderSizePixel"] = 0
-	TextLabel122["Size"] = UDim2.new(1, 0, 0.200000003, 0)
-	TextLabel122["RichText"] = true
-	TextLabel122["AutoLocalize"] = false
-	TextLabel122["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
-	TextLabel122["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
-	TextLabel122["Text"] = ""
-	TextLabel122["Font"] = Enum.Font.Oswald
-	TextLabel122["Name"] = "EndBarrier"
-	TextLabel122["Position"] = UDim2.new(0.5, 0, -0.0799999982, 0)
-	TextLabel122["TextSize"] = 50
-	TextLabel122["BackgroundTransparency"] = 1
-	TextLabel122["TextScaled"] = true
-	TextLabel122["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
-	----TextLabel122----
-	--UIGradient123--
-	local UIGradient123 = Instance.new("UIGradient",TextLabel122)
-	UIGradient123["Rotation"] = 90
-	UIGradient123["Color"] = ColorSequence.new{
+	----UIGradient114----
+	--UIStroke115--
+	local UIStroke115 = Instance.new("UIStroke",TextButton112)
+	UIStroke115["Color"] = Color3.new(1, 0.501961, 0.592157)
+	UIStroke115["Thickness"] = 4
+	UIStroke115["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
+	----UIStroke115----
+	--UIGradient116--
+	local UIGradient116 = Instance.new("UIGradient",UIStroke115)
+	UIGradient116["Rotation"] = 90
+	UIGradient116["Color"] = ColorSequence.new{
 		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
 		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
 		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
 	}
-	----UIGradient123----
-	--TextLabel124--
-	local TextLabel124 = Instance.new("TextLabel",ScrollingFrame119)
-	TextLabel124["LayoutOrder"] = 999999999
-	TextLabel124["TextWrapped"] = true
-	TextLabel124["Active"] = true
-	TextLabel124["AnchorPoint"] = Vector2.new(0.5, 1)
-	TextLabel124["BorderSizePixel"] = 0
-	TextLabel124["Size"] = UDim2.new(1, 0, 0.200000003, 0)
-	TextLabel124["RichText"] = true
-	TextLabel124["AutoLocalize"] = false
-	TextLabel124["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
-	TextLabel124["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
-	TextLabel124["Text"] = ""
-	TextLabel124["Font"] = Enum.Font.Oswald
-	TextLabel124["Name"] = "EndBarrier"
-	TextLabel124["Position"] = UDim2.new(0.5, 0, -0.0799999982, 0)
-	TextLabel124["TextSize"] = 50
-	TextLabel124["BackgroundTransparency"] = 1
-	TextLabel124["TextScaled"] = true
-	TextLabel124["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
-	----TextLabel124----
+	----UIGradient116----
+	--UIPadding117--
+	local UIPadding117 = Instance.new("UIPadding",TextLabel84)
+	UIPadding117["PaddingBottom"] = UDim.new(0.150000006, 0)
+	UIPadding117["PaddingTop"] = UDim.new(0.100000001, 0)
+	----UIPadding117----
+	--TextButton118--
+	local TextButton118 = Instance.new("TextButton",TextLabel84)
+	TextButton118["TextWrapped"] = true
+	TextButton118["TextColor3"] = Color3.new(1, 0.501961, 0.592157)
+	TextButton118["BorderColor3"] = Color3.new(0, 0, 0)
+	TextButton118["Text"] = "Items Teleporter"
+	TextButton118["TextScaled"] = true
+	TextButton118["TextSize"] = 14
+	TextButton118["Font"] = Enum.Font.Oswald
+	TextButton118["BackgroundTransparency"] = 0.5
+	TextButton118["TextXAlignment"] = Enum.TextXAlignment.Left
+	TextButton118["Size"] = UDim2.new(0.333249986, 0, 0.75000006, 0)
+	TextButton118["Name"] = "Items Teleporter"
+	TextButton118["BorderSizePixel"] = 0
+	TextButton118["BackgroundColor3"] = Color3.new(0.470588, 0.435294, 0.356863)
+	----TextButton118----
+	--UICorner119--
+	local UICorner119 = Instance.new("UICorner",TextButton118)
+	----UICorner119----
+	--UIPadding120--
+	local UIPadding120 = Instance.new("UIPadding",TextButton118)
+	UIPadding120["PaddingBottom"] = UDim.new(0.150000006, 0)
+	UIPadding120["PaddingTop"] = UDim.new(0.100000001, 0)
+	UIPadding120["PaddingLeft"] = UDim.new(0.100000001, 0)
+	UIPadding120["PaddingRight"] = UDim.new(0.100000001, 0)
+	----UIPadding120----
+	--UIStroke121--
+	local UIStroke121 = Instance.new("UIStroke",TextButton118)
+	UIStroke121["Color"] = Color3.new(1, 0.501961, 0.592157)
+	UIStroke121["Thickness"] = 4
+	UIStroke121["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
+	----UIStroke121----
+	--UIGradient122--
+	local UIGradient122 = Instance.new("UIGradient",TextButton118)
+	UIGradient122["Rotation"] = 90
+	UIGradient122["Color"] = ColorSequence.new{
+		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
+		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
+		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
+	}
+	----UIGradient122----
+	--TextButton123--
+	local TextButton123 = Instance.new("TextButton",TextButton118)
+	TextButton123["Visible"] = false
+	TextButton123["TextWrapped"] = true
+	TextButton123["TextScaled"] = true
+	TextButton123["TextColor3"] = Color3.new(0.847059, 0.729412, 0.54902)
+	TextButton123["BorderColor3"] = Color3.new(0, 0, 0)
+	TextButton123["Text"] = ""
+	TextButton123["TextSize"] = 14
+	TextButton123["AutoButtonColor"] = false
+	TextButton123["AnchorPoint"] = Vector2.new(0, 0.5)
+	TextButton123["Font"] = Enum.Font.Unknown
+	TextButton123["Name"] = "Toggle"
+	TextButton123["Position"] = UDim2.new(0.890631974, 0, 0.526478708, 0)
+	TextButton123["Size"] = UDim2.new(0.198677853, 0, 0.93288523, 0)
+	TextButton123["BackgroundTransparency"] = 1
+	TextButton123["BorderSizePixel"] = 0
+	TextButton123["BackgroundColor3"] = Color3.new(1, 0.501961, 0.592157)
+	----TextButton123----
+	--UICorner124--
+	local UICorner124 = Instance.new("UICorner",TextButton123)
+	----UICorner124----
 	--UIGradient125--
-	local UIGradient125 = Instance.new("UIGradient",TextLabel124)
+	local UIGradient125 = Instance.new("UIGradient",TextButton123)
 	UIGradient125["Rotation"] = 90
 	UIGradient125["Color"] = ColorSequence.new{
 		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
@@ -1134,116 +1082,314 @@ local function createGui(parent)
 		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
 	}
 	----UIGradient125----
-	--Frame126--
-	local Frame126 = Instance.new("Frame",ScreenGui1)
-	Frame126["Visible"] = false
-	Frame126["Size"] = UDim2.new(0.130379751, 0, 0.696517408, 0)
-	Frame126["BackgroundTransparency"] = 0.30000001192092896
-	Frame126["Position"] = UDim2.new(0, 0, 0.161691546, 0)
-	Frame126["BorderColor3"] = Color3.new(0, 0, 0)
-	Frame126["Name"] = "ItemsTeleport"
-	Frame126["BorderSizePixel"] = 0
-	Frame126["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
-	----Frame126----
-	--ScrollingFrame127--
-	local ScrollingFrame127 = Instance.new("ScrollingFrame",Frame126)
-	ScrollingFrame127["ScrollBarImageColor3"] = Color3.new(0, 0, 0)
-	ScrollingFrame127["Active"] = true
-	ScrollingFrame127["BorderColor3"] = Color3.new(0, 0, 0)
-	ScrollingFrame127["ScrollBarThickness"] = 0
-	ScrollingFrame127["AutomaticCanvasSize"] = Enum.AutomaticSize.Y
-	ScrollingFrame127["CanvasSize"] = UDim2.new(0, 0, 0, 0)
-	ScrollingFrame127["Name"] = "ItemsFrame"
-	ScrollingFrame127["ScrollingDirection"] = Enum.ScrollingDirection.Y
-	ScrollingFrame127["Size"] = UDim2.new(1, 0, 1, 0)
-	ScrollingFrame127["BackgroundTransparency"] = 1
-	ScrollingFrame127["BorderSizePixel"] = 0
-	ScrollingFrame127["BackgroundColor3"] = Color3.new(1, 1, 1)
-	----ScrollingFrame127----
-	--UIListLayout128--
-	local UIListLayout128 = Instance.new("UIListLayout",ScrollingFrame127)
-	UIListLayout128["SortOrder"] = Enum.SortOrder.LayoutOrder
-	UIListLayout128["Padding"] = UDim.new(0, 15)
-	UIListLayout128["HorizontalAlignment"] = Enum.HorizontalAlignment.Center
-	UIListLayout128["FillDirection"] = Enum.FillDirection.Horizontal
-	----UIListLayout128----
-	--UIPadding129--
-	local UIPadding129 = Instance.new("UIPadding",ScrollingFrame127)
-	UIPadding129["PaddingBottom"] = UDim.new(0.0500000007, 0)
-	UIPadding129["PaddingTop"] = UDim.new(0.0500000007, 0)
-	UIPadding129["PaddingLeft"] = UDim.new(0.0250000004, 0)
-	UIPadding129["PaddingRight"] = UDim.new(0.0250000004, 0)
-	----UIPadding129----
-	--TextLabel130--
-	local TextLabel130 = Instance.new("TextLabel",ScrollingFrame127)
-	TextLabel130["LayoutOrder"] = 999999999
-	TextLabel130["TextWrapped"] = true
-	TextLabel130["Active"] = true
-	TextLabel130["AnchorPoint"] = Vector2.new(0.5, 1)
-	TextLabel130["BorderSizePixel"] = 0
-	TextLabel130["Size"] = UDim2.new(1, 0, 0.200000003, 0)
-	TextLabel130["RichText"] = true
-	TextLabel130["AutoLocalize"] = false
-	TextLabel130["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
-	TextLabel130["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
-	TextLabel130["Text"] = ""
-	TextLabel130["Font"] = Enum.Font.Oswald
-	TextLabel130["Name"] = "EndBarrier"
-	TextLabel130["Position"] = UDim2.new(0.5, 0, -0.0799999982, 0)
-	TextLabel130["TextSize"] = 50
-	TextLabel130["BackgroundTransparency"] = 1
-	TextLabel130["TextScaled"] = true
-	TextLabel130["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
-	----TextLabel130----
-	--UIGradient131--
-	local UIGradient131 = Instance.new("UIGradient",TextLabel130)
-	UIGradient131["Rotation"] = 90
-	UIGradient131["Color"] = ColorSequence.new{
+	--UIStroke126--
+	local UIStroke126 = Instance.new("UIStroke",TextButton123)
+	UIStroke126["Color"] = Color3.new(1, 0.501961, 0.592157)
+	UIStroke126["Thickness"] = 4
+	UIStroke126["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
+	----UIStroke126----
+	--UIGradient127--
+	local UIGradient127 = Instance.new("UIGradient",UIStroke126)
+	UIGradient127["Rotation"] = 90
+	UIGradient127["Color"] = ColorSequence.new{
 		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
 		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
 		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
 	}
-	----UIGradient131----
-	--TextLabel132--
-	local TextLabel132 = Instance.new("TextLabel",ScrollingFrame127)
-	TextLabel132["LayoutOrder"] = 999999999
-	TextLabel132["TextWrapped"] = true
-	TextLabel132["Active"] = true
-	TextLabel132["AnchorPoint"] = Vector2.new(0.5, 1)
-	TextLabel132["BorderSizePixel"] = 0
-	TextLabel132["Size"] = UDim2.new(1, 0, 0.200000003, 0)
-	TextLabel132["RichText"] = true
-	TextLabel132["AutoLocalize"] = false
-	TextLabel132["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
-	TextLabel132["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
-	TextLabel132["Text"] = ""
-	TextLabel132["Font"] = Enum.Font.Oswald
-	TextLabel132["Name"] = "EndBarrier"
-	TextLabel132["Position"] = UDim2.new(0.5, 0, -0.0799999982, 0)
-	TextLabel132["TextSize"] = 50
-	TextLabel132["BackgroundTransparency"] = 1
-	TextLabel132["TextScaled"] = true
-	TextLabel132["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
-	----TextLabel132----
-	--UIGradient133--
-	local UIGradient133 = Instance.new("UIGradient",TextLabel132)
-	UIGradient133["Rotation"] = 90
-	UIGradient133["Color"] = ColorSequence.new{
+	----UIGradient127----
+	--ScrollingFrame128--
+	local ScrollingFrame128 = Instance.new("ScrollingFrame",Frame80)
+	ScrollingFrame128["ScrollBarImageColor3"] = Color3.new(0, 0, 0)
+	ScrollingFrame128["Active"] = true
+	ScrollingFrame128["BorderColor3"] = Color3.new(0, 0, 0)
+	ScrollingFrame128["ScrollBarThickness"] = 0
+	ScrollingFrame128["AutomaticCanvasSize"] = Enum.AutomaticSize.Y
+	ScrollingFrame128["CanvasSize"] = UDim2.new(0, 0, 0, 0)
+	ScrollingFrame128["Name"] = "ESP"
+	ScrollingFrame128["ScrollingDirection"] = Enum.ScrollingDirection.Y
+	ScrollingFrame128["Size"] = UDim2.new(1, 0, 1, 0)
+	ScrollingFrame128["BackgroundTransparency"] = 1
+	ScrollingFrame128["BorderSizePixel"] = 0
+	ScrollingFrame128["BackgroundColor3"] = Color3.new(1, 1, 1)
+	----ScrollingFrame128----
+	--UIListLayout129--
+	local UIListLayout129 = Instance.new("UIListLayout",ScrollingFrame128)
+	UIListLayout129["SortOrder"] = Enum.SortOrder.LayoutOrder
+	UIListLayout129["Padding"] = UDim.new(0, 15)
+	----UIListLayout129----
+	--UIPadding130--
+	local UIPadding130 = Instance.new("UIPadding",ScrollingFrame128)
+	UIPadding130["PaddingBottom"] = UDim.new(0.0500000007, 0)
+	UIPadding130["PaddingTop"] = UDim.new(0.0500000007, 0)
+	UIPadding130["PaddingLeft"] = UDim.new(0.0250000004, 0)
+	UIPadding130["PaddingRight"] = UDim.new(0.0250000004, 0)
+	----UIPadding130----
+	--TextLabel131--
+	local TextLabel131 = Instance.new("TextLabel",ScrollingFrame128)
+	TextLabel131["LayoutOrder"] = 999999999
+	TextLabel131["TextWrapped"] = true
+	TextLabel131["Active"] = true
+	TextLabel131["AnchorPoint"] = Vector2.new(0.5, 1)
+	TextLabel131["BorderSizePixel"] = 0
+	TextLabel131["Size"] = UDim2.new(1, 0, 0.200000003, 0)
+	TextLabel131["RichText"] = true
+	TextLabel131["AutoLocalize"] = false
+	TextLabel131["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
+	TextLabel131["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
+	TextLabel131["Text"] = ""
+	TextLabel131["Font"] = Enum.Font.Oswald
+	TextLabel131["Name"] = "EndBarrier"
+	TextLabel131["Position"] = UDim2.new(0.5, 0, -0.0799999982, 0)
+	TextLabel131["TextSize"] = 50
+	TextLabel131["BackgroundTransparency"] = 1
+	TextLabel131["TextScaled"] = true
+	TextLabel131["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
+	----TextLabel131----
+	--UIGradient132--
+	local UIGradient132 = Instance.new("UIGradient",TextLabel131)
+	UIGradient132["Rotation"] = 90
+	UIGradient132["Color"] = ColorSequence.new{
 		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
 		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
 		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
 	}
-	----UIGradient133----
-	--UIStroke134--
-	local UIStroke134 = Instance.new("UIStroke",Frame126)
-	UIStroke134["Color"] = Color3.new(1, 0.501961, 0.592157)
-	UIStroke134["Thickness"] = 3
-	UIStroke134["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
-	----UIStroke134----
-	--UICorner135--
-	local UICorner135 = Instance.new("UICorner",Frame126)
-	UICorner135["CornerRadius"] = UDim.new(0.0299999993, 0)
-	----UICorner135----
+	----UIGradient132----
+	--UIAspectRatioConstraint133--
+	local UIAspectRatioConstraint133 = Instance.new("UIAspectRatioConstraint",Frame80)
+	UIAspectRatioConstraint133["AspectRatio"] = 2.3014094829559326
+	----UIAspectRatioConstraint133----
+	--ScrollingFrame134--
+	local ScrollingFrame134 = Instance.new("ScrollingFrame",Frame80)
+	ScrollingFrame134["ScrollBarImageColor3"] = Color3.new(0, 0, 0)
+	ScrollingFrame134["Active"] = true
+	ScrollingFrame134["BorderColor3"] = Color3.new(0, 0, 0)
+	ScrollingFrame134["ScrollBarThickness"] = 0
+	ScrollingFrame134["AutomaticCanvasSize"] = Enum.AutomaticSize.Y
+	ScrollingFrame134["CanvasSize"] = UDim2.new(0, 0, 0, 0)
+	ScrollingFrame134["Name"] = "Bypasses"
+	ScrollingFrame134["ScrollingDirection"] = Enum.ScrollingDirection.Y
+	ScrollingFrame134["Size"] = UDim2.new(1, 0, 1, 0)
+	ScrollingFrame134["BackgroundTransparency"] = 1
+	ScrollingFrame134["BorderSizePixel"] = 0
+	ScrollingFrame134["BackgroundColor3"] = Color3.new(1, 1, 1)
+	----ScrollingFrame134----
+	--UIListLayout135--
+	local UIListLayout135 = Instance.new("UIListLayout",ScrollingFrame134)
+	UIListLayout135["SortOrder"] = Enum.SortOrder.LayoutOrder
+	UIListLayout135["Padding"] = UDim.new(0, 15)
+	----UIListLayout135----
+	--UIPadding136--
+	local UIPadding136 = Instance.new("UIPadding",ScrollingFrame134)
+	UIPadding136["PaddingBottom"] = UDim.new(0.0500000007, 0)
+	UIPadding136["PaddingTop"] = UDim.new(0.0500000007, 0)
+	UIPadding136["PaddingLeft"] = UDim.new(0.0250000004, 0)
+	UIPadding136["PaddingRight"] = UDim.new(0.0250000004, 0)
+	----UIPadding136----
+	--TextLabel137--
+	local TextLabel137 = Instance.new("TextLabel",ScrollingFrame134)
+	TextLabel137["LayoutOrder"] = 999999999
+	TextLabel137["TextWrapped"] = true
+	TextLabel137["Active"] = true
+	TextLabel137["AnchorPoint"] = Vector2.new(0.5, 1)
+	TextLabel137["BorderSizePixel"] = 0
+	TextLabel137["Size"] = UDim2.new(1, 0, 0.200000003, 0)
+	TextLabel137["RichText"] = true
+	TextLabel137["AutoLocalize"] = false
+	TextLabel137["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
+	TextLabel137["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
+	TextLabel137["Text"] = ""
+	TextLabel137["Font"] = Enum.Font.Oswald
+	TextLabel137["Name"] = "EndBarrier"
+	TextLabel137["Position"] = UDim2.new(0.5, 0, -0.0799999982, 0)
+	TextLabel137["TextSize"] = 50
+	TextLabel137["BackgroundTransparency"] = 1
+	TextLabel137["TextScaled"] = true
+	TextLabel137["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
+	----TextLabel137----
+	--UIGradient138--
+	local UIGradient138 = Instance.new("UIGradient",TextLabel137)
+	UIGradient138["Rotation"] = 90
+	UIGradient138["Color"] = ColorSequence.new{
+		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
+		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
+		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
+	}
+	----UIGradient138----
+	--ScrollingFrame139--
+	local ScrollingFrame139 = Instance.new("ScrollingFrame",Frame80)
+	ScrollingFrame139["ScrollBarImageColor3"] = Color3.new(0, 0, 0)
+	ScrollingFrame139["Active"] = true
+	ScrollingFrame139["BorderColor3"] = Color3.new(0, 0, 0)
+	ScrollingFrame139["ScrollBarThickness"] = 0
+	ScrollingFrame139["AutomaticCanvasSize"] = Enum.AutomaticSize.Y
+	ScrollingFrame139["CanvasSize"] = UDim2.new(0, 0, 0, 0)
+	ScrollingFrame139["Name"] = "More"
+	ScrollingFrame139["ScrollingDirection"] = Enum.ScrollingDirection.Y
+	ScrollingFrame139["Size"] = UDim2.new(1, 0, 1, 0)
+	ScrollingFrame139["BackgroundTransparency"] = 1
+	ScrollingFrame139["BorderSizePixel"] = 0
+	ScrollingFrame139["BackgroundColor3"] = Color3.new(1, 1, 1)
+	----ScrollingFrame139----
+	--UIListLayout140--
+	local UIListLayout140 = Instance.new("UIListLayout",ScrollingFrame139)
+	UIListLayout140["SortOrder"] = Enum.SortOrder.LayoutOrder
+	UIListLayout140["Padding"] = UDim.new(0, 15)
+	----UIListLayout140----
+	--UIPadding141--
+	local UIPadding141 = Instance.new("UIPadding",ScrollingFrame139)
+	UIPadding141["PaddingBottom"] = UDim.new(0.0500000007, 0)
+	UIPadding141["PaddingTop"] = UDim.new(0.0500000007, 0)
+	UIPadding141["PaddingLeft"] = UDim.new(0.0250000004, 0)
+	UIPadding141["PaddingRight"] = UDim.new(0.0250000004, 0)
+	----UIPadding141----
+	--TextLabel142--
+	local TextLabel142 = Instance.new("TextLabel",ScrollingFrame139)
+	TextLabel142["LayoutOrder"] = 999999999
+	TextLabel142["TextWrapped"] = true
+	TextLabel142["Active"] = true
+	TextLabel142["AnchorPoint"] = Vector2.new(0.5, 1)
+	TextLabel142["BorderSizePixel"] = 0
+	TextLabel142["Size"] = UDim2.new(1, 0, 0.200000003, 0)
+	TextLabel142["RichText"] = true
+	TextLabel142["AutoLocalize"] = false
+	TextLabel142["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
+	TextLabel142["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
+	TextLabel142["Text"] = ""
+	TextLabel142["Font"] = Enum.Font.Oswald
+	TextLabel142["Name"] = "EndBarrier"
+	TextLabel142["Position"] = UDim2.new(0.5, 0, -0.0799999982, 0)
+	TextLabel142["TextSize"] = 50
+	TextLabel142["BackgroundTransparency"] = 1
+	TextLabel142["TextScaled"] = true
+	TextLabel142["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
+	----TextLabel142----
+	--UIGradient143--
+	local UIGradient143 = Instance.new("UIGradient",TextLabel142)
+	UIGradient143["Rotation"] = 90
+	UIGradient143["Color"] = ColorSequence.new{
+		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
+		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
+		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
+	}
+	----UIGradient143----
+	--TextLabel144--
+	local TextLabel144 = Instance.new("TextLabel",ScrollingFrame139)
+	TextLabel144["LayoutOrder"] = 999999999
+	TextLabel144["TextWrapped"] = true
+	TextLabel144["Active"] = true
+	TextLabel144["AnchorPoint"] = Vector2.new(0.5, 1)
+	TextLabel144["BorderSizePixel"] = 0
+	TextLabel144["Size"] = UDim2.new(1, 0, 0.200000003, 0)
+	TextLabel144["RichText"] = true
+	TextLabel144["AutoLocalize"] = false
+	TextLabel144["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
+	TextLabel144["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
+	TextLabel144["Text"] = ""
+	TextLabel144["Font"] = Enum.Font.Oswald
+	TextLabel144["Name"] = "EndBarrier"
+	TextLabel144["Position"] = UDim2.new(0.5, 0, -0.0799999982, 0)
+	TextLabel144["TextSize"] = 50
+	TextLabel144["BackgroundTransparency"] = 1
+	TextLabel144["TextScaled"] = true
+	TextLabel144["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
+	----TextLabel144----
+	--UIGradient145--
+	local UIGradient145 = Instance.new("UIGradient",TextLabel144)
+	UIGradient145["Rotation"] = 90
+	UIGradient145["Color"] = ColorSequence.new{
+		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
+		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
+		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
+	}
+	----UIGradient145----
+	--ScrollingFrame146--
+	local ScrollingFrame146 = Instance.new("ScrollingFrame",Frame80)
+	ScrollingFrame146["Visible"] = false
+	ScrollingFrame146["Active"] = true
+	ScrollingFrame146["BorderColor3"] = Color3.new(0, 0, 0)
+	ScrollingFrame146["ScrollBarThickness"] = 0
+	ScrollingFrame146["AutomaticCanvasSize"] = Enum.AutomaticSize.Y
+	ScrollingFrame146["ScrollBarImageColor3"] = Color3.new(0, 0, 0)
+	ScrollingFrame146["CanvasSize"] = UDim2.new(0, 0, 0, 0)
+	ScrollingFrame146["Name"] = "Items Teleporter"
+	ScrollingFrame146["ScrollingDirection"] = Enum.ScrollingDirection.Y
+	ScrollingFrame146["Size"] = UDim2.new(1, 0, 1, 0)
+	ScrollingFrame146["BackgroundTransparency"] = 1
+	ScrollingFrame146["BorderSizePixel"] = 0
+	ScrollingFrame146["BackgroundColor3"] = Color3.new(1, 1, 1)
+	----ScrollingFrame146----
+	--UIListLayout147--
+	local UIListLayout147 = Instance.new("UIListLayout",ScrollingFrame146)
+	UIListLayout147["SortOrder"] = Enum.SortOrder.LayoutOrder
+	UIListLayout147["Padding"] = UDim.new(0, 15)
+	----UIListLayout147----
+	--UIPadding148--
+	local UIPadding148 = Instance.new("UIPadding",ScrollingFrame146)
+	UIPadding148["PaddingBottom"] = UDim.new(0.0500000007, 0)
+	UIPadding148["PaddingTop"] = UDim.new(0.0500000007, 0)
+	UIPadding148["PaddingLeft"] = UDim.new(0.0250000004, 0)
+	UIPadding148["PaddingRight"] = UDim.new(0.0250000004, 0)
+	----UIPadding148----
+	--TextLabel149--
+	local TextLabel149 = Instance.new("TextLabel",ScrollingFrame146)
+	TextLabel149["LayoutOrder"] = 999999999
+	TextLabel149["TextWrapped"] = true
+	TextLabel149["Active"] = true
+	TextLabel149["AnchorPoint"] = Vector2.new(0.5, 1)
+	TextLabel149["BorderSizePixel"] = 0
+	TextLabel149["Size"] = UDim2.new(1, 0, 0.200000003, 0)
+	TextLabel149["RichText"] = true
+	TextLabel149["AutoLocalize"] = false
+	TextLabel149["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
+	TextLabel149["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
+	TextLabel149["Text"] = ""
+	TextLabel149["Font"] = Enum.Font.Oswald
+	TextLabel149["Name"] = "EndBarrier"
+	TextLabel149["Position"] = UDim2.new(0.5, 0, -0.0799999982, 0)
+	TextLabel149["TextSize"] = 50
+	TextLabel149["BackgroundTransparency"] = 1
+	TextLabel149["TextScaled"] = true
+	TextLabel149["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
+	----TextLabel149----
+	--UIGradient150--
+	local UIGradient150 = Instance.new("UIGradient",TextLabel149)
+	UIGradient150["Rotation"] = 90
+	UIGradient150["Color"] = ColorSequence.new{
+		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
+		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
+		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
+	}
+	----UIGradient150----
+	--TextLabel151--
+	local TextLabel151 = Instance.new("TextLabel",ScrollingFrame146)
+	TextLabel151["LayoutOrder"] = 999999999
+	TextLabel151["TextWrapped"] = true
+	TextLabel151["Active"] = true
+	TextLabel151["AnchorPoint"] = Vector2.new(0.5, 1)
+	TextLabel151["BorderSizePixel"] = 0
+	TextLabel151["Size"] = UDim2.new(1, 0, 0.200000003, 0)
+	TextLabel151["RichText"] = true
+	TextLabel151["AutoLocalize"] = false
+	TextLabel151["TextColor3"] = Color3.new(1, 0.87451, 0.654902)
+	TextLabel151["BorderColor3"] = Color3.new(0.105882, 0.164706, 0.207843)
+	TextLabel151["Text"] = ""
+	TextLabel151["Font"] = Enum.Font.Oswald
+	TextLabel151["Name"] = "EndBarrier"
+	TextLabel151["Position"] = UDim2.new(0.5, 0, -0.0799999982, 0)
+	TextLabel151["TextSize"] = 50
+	TextLabel151["BackgroundTransparency"] = 1
+	TextLabel151["TextScaled"] = true
+	TextLabel151["BackgroundColor3"] = Color3.new(0.14902, 0.0980392, 0.0980392)
+	----TextLabel151----
+	--UIGradient152--
+	local UIGradient152 = Instance.new("UIGradient",TextLabel151)
+	UIGradient152["Rotation"] = 90
+	UIGradient152["Color"] = ColorSequence.new{
+		ColorSequenceKeypoint.new(0,Color3.new(1,0.854902,0.74902)),
+		ColorSequenceKeypoint.new(0.414309,Color3.new(0.997259,0.842765,0.7361)),
+		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.733333,0.619608))
+	}
+	----UIGradient152----
 	spawn(function() --Source for Script2
 		local script = Script2
 		local GuiLib = {}
@@ -1267,7 +1413,87 @@ local function createGui(parent)
 		local GState = false
 		local fovstate = false
 		local fakestun
-		local itemui = script.Parent.ItemsTeleport
+		local itemui = script.Parent.MainUi["Items Teleporter"]
+		local CollectionService = game:GetService("CollectionService")
+		
+		local RunService = game:GetService("RunService")
+		local player = game.Players.LocalPlayer
+		local character = player.Character
+		
+		local function grabItem(cframe:CFrame, item:BasePart)
+			if not character then return end
+			local hrp = character:FindFirstChild("HumanoidRootPart")
+			if not hrp then return end
+		
+			local ogcf = hrp.CFrame
+			local ogcc = hrp.CanCollide
+			local itemchanged = false
+			item.Changed:Connect(function()
+				itemchanged = true
+			end)
+			
+			hrp.CanCollide = false
+			hrp.CFrame = CFrame.new(cframe.Position)
+			script.Parent.MainUi.Visible = false
+			local clickdetector = item:FindFirstChildWhichIsA("ClickDetector")
+			if not clickdetector then return end
+			repeat task.wait(0.1) until hrp.CFrame ~= ogcf
+			hrp.Anchored = true
+			CurrentCamera.CameraType = Enum.CameraType.Scriptable
+			InputService.MouseBehavior = Enum.MouseBehavior.LockCenter
+			local camera = workspace.CurrentCamera
+			camera.CFrame = CFrame.new(camera.CFrame.Position, item.Position)
+			task.spawn(function()
+				wait(5)
+				itemchanged = true
+			end)
+			if RunService:IsClient() then
+				repeat mouse1click() task.wait() until itemchanged or not item
+			end
+		
+			wait(0.2)
+			script.Parent.MainUi.Visible = false
+			CurrentCamera.CameraType = Enum.CameraType.Custom
+			InputService.MouseBehavior = Enum.MouseBehavior.Default
+			hrp.CFrame = ogcf
+			hrp.Anchored = false
+			hrp.CanCollide = ogcc
+		end
+		
+		
+		
+		function createItemTeleporter(item:BasePart)
+			local render = item:Clone()
+			render.CFrame = CFrame.new(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+			local newitem = script.Templates.ItemTemplate:Clone()
+			newitem.Object.Value = item
+			newitem.Text = item.Name
+			render.Parent = newitem.ViewportFrame
+			newitem.Visible = true
+			newitem.Parent = itemui
+			newitem.MouseButton1Click:Connect(function()
+				grabItem(item.CFrame, item)
+			end)
+		end
+		
+		CollectionService:GetInstanceRemovedSignal("ItemsSubject"):Connect(function(instance)
+			if instance:IsA("BasePart") then
+				for _, stuff in pairs(itemui:GetChildren()) do
+					if stuff.Name == "ItemTemplate" then
+						if stuff.Object.Value == instance then
+							stuff:Destroy()
+						end
+					end
+				end
+			end
+		end)
+		
+		CollectionService:GetInstanceAddedSignal("ItemsSubject"):Connect(function(instance)
+			if instance:IsA("BasePart") and instance:IsDescendantOf(workspace) then
+				createItemTeleporter(instance)
+			end
+		end)
+		
 		
 		function refreshCharacter(c)
 			character = c
@@ -1844,14 +2070,11 @@ local function createGui(parent)
 			end
 		end)
 		GuiLib:AddLabel("More", "Teleporters", 19)
-		GuiLib:AddToggle("More", "Items Teleporter", 20, function(value)
-			itemui.Visible = value
-		end)
 		return GuiLib
 		
 	end)
-	spawn(function() --Source for Script60
-		local script = Script60
+	spawn(function() --Source for Script70
+		local script = Script70
 		local Players = game:GetService("Players")
 		local player = Players.LocalPlayer
 		local RunService = game:GetService("RunService")
@@ -1897,9 +2120,9 @@ local function createGui(parent)
 		end)
 		script.Parent.Toggle.MouseButton1Click:Connect(toggleUi)
 	end)
-	spawn(function() --Source for Script61
-		local script = Script61
-		--[[local load_guicoreV2 = false
+	spawn(function() --Source for Script71
+		local script = Script71
+		local load_guicoreV2 = false
 		if game:GetService("RunService"):IsClient() then
 			local coregui = game.CoreGui
 			if coregui then
@@ -1911,7 +2134,7 @@ local function createGui(parent)
 					load_guicoreV2 = true
 				end
 			end
-		end ]]--
+		end 
 	end)
 end
 createGui(game.CoreGui) --coregui by default you should but change it
