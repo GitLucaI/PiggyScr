@@ -567,25 +567,20 @@ local function createGui(parent)
 		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.560784,0.517647))
 	}
 	----UIGradient64----
-	--ViewportFrame65--
-	local ViewportFrame65 = Instance.new("ViewportFrame",TextButton60)
-	ViewportFrame65["AnchorPoint"] = Vector2.new(0.5, 0.5)
-	ViewportFrame65["Size"] = UDim2.new(0.0764387101, 0, 1, 0)
-	ViewportFrame65["Active"] = true
-	ViewportFrame65["BorderColor3"] = Color3.new(0, 0, 0)
-	ViewportFrame65["Position"] = UDim2.new(0.0382192954, 0, 0.5, 0)
-	ViewportFrame65["BorderSizePixel"] = 0
-	ViewportFrame65["BackgroundColor3"] = Color3.new(1, 1, 1)
-	----ViewportFrame65----
-	--UIStroke66--
-	local UIStroke66 = Instance.new("UIStroke",ViewportFrame65)
-	UIStroke66["Color"] = Color3.new(1, 0.501961, 0.592157)
-	UIStroke66["LineJoinMode"] = Enum.LineJoinMode.Miter
-	UIStroke66["Thickness"] = 4
-	UIStroke66["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
-	----UIStroke66----
+	--ObjectValue65--
+	local ObjectValue65 = Instance.new("ObjectValue",TextButton60)
+	ObjectValue65["Name"] = "Object"
+	----ObjectValue65----
+	--ViewportFrame66--
+	local ViewportFrame66 = Instance.new("ViewportFrame",TextButton60)
+	ViewportFrame66["AnchorPoint"] = Vector2.new(0.5, 0.5)
+	ViewportFrame66["Position"] = UDim2.new(0.0379999988, 0, 0.5, 0)
+	ViewportFrame66["ZIndex"] = 600
+	ViewportFrame66["Size"] = UDim2.new(0.0759999976, 0, 1, 0)
+	ViewportFrame66["BackgroundColor3"] = Color3.new(1, 1, 1)
+	----ViewportFrame66----
 	--UIGradient67--
-	local UIGradient67 = Instance.new("UIGradient",UIStroke66)
+	local UIGradient67 = Instance.new("UIGradient",ViewportFrame66)
 	UIGradient67["Rotation"] = 90
 	UIGradient67["Color"] = ColorSequence.new{
 		ColorSequenceKeypoint.new(0,Color3.new(1,0.501961,0.592157)),
@@ -593,19 +588,22 @@ local function createGui(parent)
 		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.560784,0.517647))
 	}
 	----UIGradient67----
-	--UIGradient68--
-	local UIGradient68 = Instance.new("UIGradient",ViewportFrame65)
-	UIGradient68["Rotation"] = 90
-	UIGradient68["Color"] = ColorSequence.new{
+	--UIStroke68--
+	local UIStroke68 = Instance.new("UIStroke",ViewportFrame66)
+	UIStroke68["Color"] = Color3.new(1, 0.501961, 0.592157)
+	UIStroke68["LineJoinMode"] = Enum.LineJoinMode.Miter
+	UIStroke68["Thickness"] = 4
+	UIStroke68["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
+	----UIStroke68----
+	--UIGradient69--
+	local UIGradient69 = Instance.new("UIGradient",UIStroke68)
+	UIGradient69["Rotation"] = 90
+	UIGradient69["Color"] = ColorSequence.new{
 		ColorSequenceKeypoint.new(0,Color3.new(1,0.501961,0.592157)),
 		ColorSequenceKeypoint.new(0.414309,Color3.new(0.996078,0.494118,0.521569)),
 		ColorSequenceKeypoint.new(1,Color3.new(0.972549,0.560784,0.517647))
 	}
-	----UIGradient68----
-	--ObjectValue69--
-	local ObjectValue69 = Instance.new("ObjectValue",TextButton60)
-	ObjectValue69["Name"] = "Object"
-	----ObjectValue69----
+	----UIGradient69----
 	--Script70--
 	local Script70 = Instance.new("Script",ScreenGui1)
 	Script70["Name"] = "LibUse"
@@ -1464,7 +1462,7 @@ local function createGui(parent)
 		
 		function createItemTeleporter(item:BasePart)
 			local render = item:Clone()
-			render.CFrame = CFrame.new(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+			render.CFrame = CFrame.new(0, 0, 0)
 			local newitem = script.Templates.ItemTemplate:Clone()
 			newitem.Object.Value = item
 			newitem.Text = item.Name
