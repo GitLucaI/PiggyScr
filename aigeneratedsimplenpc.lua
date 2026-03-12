@@ -9,6 +9,7 @@ local player = Players.LocalPlayer
 local char, root, hum, head
 local initialWalkSpeed, initialJumpPower = 16, 50
 local active, sleepMode, resting, linesEnabled, isMean = false, false, false, true, false
+local highlightActive = false -- New Toggle State
 local pathThread, lookThread, statThread, sensesThread
 local behaviorName = "Standard"
 local currentTargetPlayer = nil
@@ -16,6 +17,16 @@ local isDancing = false
 local lastY, falling = 0, false
 local threatPart = nil
 local lastHealth = 100
+
+-- Create the Highlight Object
+local analysisHighlight = Instance.new("Highlight")
+analysisHighlight.Name = "AI_Analysis_Focus"
+analysisHighlight.Parent = player.PlayerGui
+analysisHighlight.Enabled = false
+analysisHighlight.Adornee = nil
+analysisHighlight.FillColor = Color3.fromRGB(0, 255, 255)
+analysisHighlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+analysisHighlight.FillTransparency = 0.5
 
 local stats = {
 	Tiredness = 100, 
@@ -65,8 +76,8 @@ ui.Name = "GTANPC_ULTIMATE_AWARE"
 ui.ResetOnSpawn = false
 
 local mainHolder = Instance.new("Frame", ui)
-mainHolder.Size = UDim2.new(0, 240, 0, 700)
-mainHolder.Position = UDim2.new(0, 50, 0.15, 0)
+mainHolder.Size = UDim2.new(0, 240, 0, 750)
+mainHolder.Position = UDim2.new(0, 50, 0.1, 0)
 mainHolder.BackgroundTransparency = 1
 mainHolder.Active, mainHolder.Draggable = true, true
 
@@ -118,7 +129,7 @@ local function createPanel(parent, name, pos, size)
 	return content
 end
 
-local ctrl = createPanel(mainHolder, "CONTROL PANEL", UDim2.new(0, 0, 0, 0), UDim2.new(1, 0, 0, 380))
+local ctrl = createPanel(mainHolder, "CONTROL PANEL", UDim2.new(0, 0, 0, 0), UDim2.new(1, 0, 0, 420))
 local cl = Instance.new("UIListLayout", ctrl) cl.Padding = UDim.new(0, 5) Instance.new("UIPadding", ctrl).PaddingTop = UDim.new(0, 10)
 
 local function btn(txt, clr)
@@ -136,6 +147,17 @@ end
 local tglB = btn("START AI", Color3.fromRGB(0, 180, 0))
 local lineB = btn("TOGGLE LINES: ON", Color3.fromRGB(40, 120, 180))
 local meanB = btn("TOGGLE MEAN: OFF", Color3.fromRGB(200, 80, 80))
+
+-- The New Highlight Toggle
+local highB = btn("HIGHLIGHT ANALYZE: OFF", Color3.fromRGB(40, 40, 45))
+highB.MouseButton1Click:Connect(function()
+	highlightActive = not highlightActive
+	analysisHighlight.Enabled = highlightActive
+	if not highlightActive then analysisHighlight.Adornee = nil end
+	highB.Text = "HIGHLIGHT ANALYZE: " .. (highlightActive and "ON" or "OFF")
+	highB.BackgroundColor3 = highlightActive and Color3.fromRGB(0, 150, 200) or Color3.fromRGB(40, 40, 45)
+end)
+
 local slpB = btn("GO TO SLEEP", Color3.fromRGB(120, 50, 200))
 local eatB = btn("EAT FOOD", Color3.fromRGB(180, 120, 40))
 local drkB = btn("DRINK WATER", Color3.fromRGB(40, 120, 180))
@@ -143,7 +165,7 @@ local spdI = inp("Speed (16)")
 local jmpI = inp("Jump (50)")
 local killB = btn("GIVE UP", Color3.fromRGB(60, 60, 60))
 
-local vit = createPanel(mainHolder, "VITALS & ANALYSIS", UDim2.new(0, 0, 0, 390), UDim2.new(1, 0, 0, 310))
+local vit = createPanel(mainHolder, "VITALS & ANALYSIS", UDim2.new(0, 0, 0, 430), UDim2.new(1, 0, 0, 310))
 local vl = Instance.new("UIListLayout", vit) vl.Padding = UDim.new(0, 4) Instance.new("UIPadding", vit).PaddingLeft = UDim.new(0, 12)
 
 local behLab = Instance.new("TextLabel", vit)
@@ -247,6 +269,12 @@ local function startNPC()
 				
 				if result and result.Instance then
 					local hit = result.Instance
+					
+					-- Update Highlight Adornee if enabled
+					if highlightActive then
+						analysisHighlight.Adornee = hit
+					end
+
 					local hitModel = hit:FindFirstAncestorOfClass("Model")
 					local hitPlayer = hitModel and Players:GetPlayerFromCharacter(hitModel)
 					
@@ -274,6 +302,8 @@ local function startNPC()
 							if math.random(1, 30) == 1 then speakTrigger, speakFormat = hit.Name, (isMean and dialogs.Mean.SeeObject or dialogs.Normal.SeeObject) end
 						end
 					end
+				else
+					if highlightActive then analysisHighlight.Adornee = nil end
 				end
 				
 				for _, v in pairs(Workspace:GetDescendants()) do
@@ -326,7 +356,7 @@ end
 tglB.MouseButton1Click:Connect(function()
 	active = not active
 	tglB.Text, tglB.BackgroundColor3 = active and "STOP AI" or "START AI", active and Color3.new(0.6,0,0) or Color3.new(0,0.6,0)
-	if active then startNPC() else if statThread then task.cancel(statThread) task.cancel(pathThread) task.cancel(lookThread) task.cancel(sensesThread) end stats.Mind = "Offline" stats.AnalysisResult = "None" end
+	if active then startNPC() else if statThread then task.cancel(statThread) task.cancel(pathThread) task.cancel(lookThread) task.cancel(sensesThread) end stats.Mind = "Offline" stats.AnalysisResult = "None" analysisHighlight.Adornee = nil end
 end)
 
 lineB.MouseButton1Click:Connect(function() linesEnabled = not linesEnabled lineB.Text = linesEnabled and "TOGGLE LINES: ON" or "TOGGLE LINES: OFF" end)
@@ -363,6 +393,7 @@ local function setup(c)
 		say(poolDeath[math.random(1, #poolDeath)])
 		active = false tglB.Text, tglB.BackgroundColor3 = "START AI", Color3.new(0,0.6,0)
 		stats.Mind = "Deceased"
+		analysisHighlight.Adornee = nil
 		if statThread then task.cancel(statThread) task.cancel(pathThread) task.cancel(lookThread) task.cancel(sensesThread) end
 	end)
 	hum.StateChanged:Connect(function(_, state)
