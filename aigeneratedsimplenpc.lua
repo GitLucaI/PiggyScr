@@ -4,12 +4,13 @@ local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local Chat = game:GetService("TextChatService")
 local Workspace = game:GetService("Workspace")
+local VoiceChatService = game:GetService("VoiceChatService")
 
 local player = Players.LocalPlayer
 local char, root, hum, head
 local initialWalkSpeed, initialJumpPower = 16, 50
 local active, sleepMode, resting, linesEnabled, isMean = false, false, false, true, false
-local highlightActive = false -- New Toggle State
+local highlightActive = false 
 local pathThread, lookThread, statThread, sensesThread
 local behaviorName = "Standard"
 local currentTargetPlayer = nil
@@ -18,7 +19,6 @@ local lastY, falling = 0, false
 local threatPart = nil
 local lastHealth = 100
 
--- Create the Highlight Object
 local analysisHighlight = Instance.new("Highlight")
 analysisHighlight.Name = "AI_Analysis_Focus"
 analysisHighlight.Parent = player.PlayerGui
@@ -29,45 +29,40 @@ analysisHighlight.OutlineColor = Color3.fromRGB(255, 255, 255)
 analysisHighlight.FillTransparency = 0.5
 
 local stats = {
-	Tiredness = 100, 
-	Stamina = 100, 
-	Hunger = 100, 
-	Thirst = 100,
-	Health = 100,
-	Mind = "Offline",
-	AnalysisResult = "None"
+	Tiredness = 100, Stamina = 100, Hunger = 100, Thirst = 100,
+	Health = 100, Mind = "Offline", AnalysisResult = "None"
 }
 
 local behaviorConfig = {
-	Chilled = {Color = Color3.new(0, 1, 1), Speed = 0.6, Lines = {"Vibing hard.", "Slow life is best.", "Chilling..."}, MeanLines = {"Don't ruin my vibe.", "Leave me alone, I'm resting.", "Ugh, you're ruining the mood."}},
-	Standard = {Color = Color3.new(1, 1, 1), Speed = 1.0, Lines = {"Just walking.", "Heading out.", "Nice day."}, MeanLines = {"What are you staring at?", "Keep walking.", "Boring day thanks to you."}},
-	Observant = {Color = Color3.new(1, 0.8, 0), Speed = 0.8, Lines = {"I see you, {N}.", "Interesting style, {N}."}, MeanLines = {"You look terrible, {N}.", "Why are you dressed like that, {N}?", "Staring contest, and you're losing."}},
-	Athletic = {Color = Color3.new(0, 1, 0), Speed = 2.0, Lines = {"Gotta blast!", "No pain no gain!", "LIGHTWEIGHT!"}, MeanLines = {"Move it, slowpoke!", "You're too slow!", "Outta my way, I'm working out!"}},
-	Aggressive = {Color = Color3.new(1, 0, 0), Speed = 2.2, Lines = {"OUT OF MY WAY!", "Don't touch me!", "MOVE!"}, MeanLines = {"I'LL DESTROY YOU!", "DON'T YOU DARE TOUCH ME!", "GET OUT OF MY SIGHT!"}},
-	Anxious = {Color = Color3.new(0.6, 0.3, 1), Speed = 1.4, Lines = {"Leave me alone, {N}!", "Stop following me!", "I'm scared!"}, MeanLines = {"Stay away from me, weirdo!", "Don't touch me!", "You're creeping me out, {N}!"}},
-	Lost = {Color = Color3.new(0.5, 0.5, 0.5), Speed = 0.8, Lines = {"Where am I?", "Wrong turn...", "Is this the map?"}, MeanLines = {"This map is garbage.", "Where even am I? This place is trash.", "Whoever built this is an idiot."}}
+	Chilled = {Color = Color3.new(0, 1, 1), Speed = 0.6, Lines = {"Vibing hard.", "Slow life is best.", "Chilling...", "Everything is wavy.", "No stress here.", "Life is good.", "Keep it mellow.", "Flowing with the wind.", "Peace and quiet.", "Just breathing.", "Serenity now.", "Relaxing my circuits.", "Cooling down.", "Easy does it.", "Smooth sailing.", "No rush at all.", "Mellow vibes only.", "Staying calm.", "Zen mode.", "Just being."}, MeanLines = {"Don't ruin my vibe.", "Leave me alone, I'm resting.", "Ugh, you're ruining the mood.", "Go away, you're annoying.", "Stop being a buzzkill.", "You're too loud.", "My peace is more important than you.", "Get out of my personal space.", "You're a headache.", "I'm ignoring you.", "Vibe killer.", "You're basic.", "Talk to the hand.", "I don't care.", "Stop vibrating.", "You're exhausting.", "I'm literally sleeping.", "Go bother someone else.", "You're killing the energy.", "Silence is golden, try it."}},
+	Standard = {Color = Color3.new(1, 1, 1), Speed = 1.0, Lines = {"Just walking.", "Heading out.", "Nice day.", "Going for a stroll.", "Checking things out.", "Moving along.", "Path looks clear.", "Observing the area.", "Standard procedure.", "Walking the line.", "Routine check.", "Averaging out.", "Nothing special.", "Just an NPC passing through.", "Hello world.", "On the move.", "Normal day.", "Standard speed.", "Walking forward.", "Step by step."}, MeanLines = {"What are you staring at?", "Keep walking.", "Boring day thanks to you.", "You got a problem?", "Move it.", "Why are you following me?", "Mind your business.", "You're in my path.", "I'm not a tour guide.", "Get a life.", "Boring.", "Stop breathing near me.", "Useless.", "You're just a player.", "I've seen better avatars.", "You're annoying.", "Walk away.", "Don't touch the code.", "I'm busy.", "You're irrelevant."}},
+	Observant = {Color = Color3.new(1, 0.8, 0), Speed = 0.8, Lines = {"I see you, {N}.", "Interesting style, {N}.", "I'm watching everything.", "Noticing some details here.", "Scanning the area.", "You stand out, {N}.", "Eye on the prize.", "Recording data.", "I see what you're doing.", "Analytical mode active.", "Observing behaviors.", "Interesting movement.", "Tracking pixels.", "Visual input received.", "Data collection in progress.", "I see the world.", "Nothing escapes me.", "Keen eye.", "Watching you.", "Noting that."}, MeanLines = {"You look terrible, {N}.", "Why are you dressed like that, {N}?", "Staring contest, and you're losing.", "I see all your mistakes.", "You're a mess, honestly.", "Scanning... results: Garbage.", "I've seen better faces on a brick.", "Your outfit is a crime.", "I'm judging you silently.", "Looking at you hurts my sensors.", "Pathetic.", "I see right through you.", "You're transparently annoying.", "What a joke.", "Ugly avatar detected.", "I'm documenting your failure.", "You're a glitch in my vision.", "Scanning for talent... none found.", "You're an eyesore.", "I'm disgusted."}},
+	Athletic = {Color = Color3.new(0, 1, 0), Speed = 2.0, Lines = {"Gotta blast!", "No pain no gain!", "LIGHTWEIGHT!", "Keep up the pace!", "Energy is high!", "Running laps!", "Speed is key!", "Cardio day!", "Fueling the fire!", "Can't stop!", "Pure speed!", "Racing the wind!", "Athletic prowess!", "Movement is life!", "Sprint mode!", "High performance!", "Breaking records!", "Active lifestyle!", "Fast and furious!", "Peak condition!"}, MeanLines = {"Move it, slowpoke!", "You're too slow!", "Outta my way, I'm working out!", "Do you even run?", "Weak.", "I'm lapping you.", "Get some cardio, fatty.", "Slow and steady loses my interest.", "You're lagging.", "Catch me if you can, loser.", "My CPU is faster than your legs.", "Out of my lane.", "You're obstructing my flow.", "I'm elite, you're not.", "Pathetic speed.", "Run faster, idiot.", "I'm the flash, you're a turtle.", "Try to keep up.", "You're dragging.", "Stamina of a rock."}},
+	Aggressive = {Color = Color3.new(1, 0, 0), Speed = 2.2, Lines = {"OUT OF MY WAY!", "Don't touch me!", "MOVE!", "I'm in a hurry!", "Step aside!", "Clear the path!", "Fast movement!", "Aggressive stance!", "Heading through!", "Don't block!", "Running hot!", "On a mission!", "Pushing forward!", "No delays!", "Move it now!", "Speeding!", "Intense energy!", "Outta the way!", "Don't stop me!", "Victory!"}, MeanLines = {"I'LL DESTROY YOU!", "DON'T YOU DARE TOUCH ME!", "GET OUT OF MY SIGHT!", "You're asking for it!", "I'll run right over you!", "Touch me and see what happens.", "I'm a weapon.", "You're a target.", "Get lost before I make you.", "I'm the boss here.", "You're trash.", "Shut up.", "Disappear.", "I'll delete you.", "Stop existing.", "You're a waste of server space.", "I'm superior.", "Fear the AI.", "Back off!", "Final warning."}},
+	Anxious = {Color = Color3.new(0.6, 0.3, 1), Speed = 1.4, Lines = {"Leave me alone, {N}!", "Stop following me!", "I'm scared!", "Something feels off.", "I need space!", "Panicking!", "Where is the exit?", "Too many people.", "My sensors are overloaded.", "Help!", "Safety first.", "Running away.", "Nervous energy.", "Don't look at me.", "Hiding soon.", "Everything is too loud.", "I'm shaking.", "Fear protocol!", "Stay back!", "Searching for cover."}, MeanLines = {"Stay away from me, weirdo!", "Don't touch me!", "You're creeping me out, {N}!", "Why are you following me?", "Get lost!", "You're a stalker.", "I'm calling the admins.", "Creep alert.", "You're making me glitch.", "Your presence is toxic.", "I feel unsafe near you.", "Go away, freak.", "You're haunting me.", "Stop it!", "I hate this.", "You're a nightmare.", "Don't breathe on me.", "Back off, creep.", "I'm reporting you.", "Leave me in peace!"}},
+	Lost = {Color = Color3.new(0.5, 0.5, 0.5), Speed = 0.8, Lines = {"Where am I?", "Wrong turn...", "Is this the map?", "I think I'm lost.", "Which way is it?", "Searching for home.", "Navigation error.", "Where are the walls?", "Looking for coordinates.", "Lost in space.", "Empty data.", "Searching...", "I don't know this place.", "Missing files.", "Where did I go?", "Help me find the way.", "Confused.", "Directionless.", "Looking for a sign.", "Wandering."}, MeanLines = {"This map is garbage.", "Where even am I? This place is trash.", "Whoever built this is an idiot.", "I'm stuck in this dump.", "Worst place ever.", "This game sucks.", "The dev is lazy.", "I'm lost in a void of stupidity.", "Everything looks the same, badly made.", "Ugly map.", "I hate it here.", "Trash design.", "I'm glitching out of boredom.", "Worst server ever.", "You're lost too, aren't you? Idiot.", "Missing brain cells here.", "Garbage world.", "I'm deleting myself from this place.", "Zero stars.", "Why am I here?"}}
 }
 
 local dialogs = {
 	Normal = {
-		Math = {"The answer to %s is %s.", "I calculated %s, it's %s."},
-		Spawn = {"Systems online. Intelligence module active.", "AI Rebooted. Systems online."},
-		Damage = {"Damage detected! Initiating evasive maneuvers!", "Taking damage! Seeking safety!"},
-		Death = {"NPC has deceased. Disabling systems.", "Critical damage sustained... NPC deceased."},
-		Read = {"That sign says '%s'.", "I'm reading '%s'."},
-		Hear = {"I hear '%s' nearby.", "What is that '%s' noise?"},
-		SeeObject = {"Looking at %s.", "I see a %s."},
-		SeePlayer = {"I spot %s.", "Target acquired: %s."}
+		Math = {"The answer to %s is %s.", "I calculated %s, it's %s.", "That's easy: %s is %s.", "Math complete: %s = %s.", "Result is %s.", "My CPU says %s.", "Calculation: %s.", "Done: %s.", "Easy: %s.", "The sum is %s.", "Numerical result: %s.", "Math: %s.", "According to logic: %s.", "I found %s.", "Computation: %s.", "The value is %s.", "Solved: %s.", "Output: %s.", "Data says %s.", "Calculated: %s."},
+		Spawn = {"Systems online.", "AI Rebooted.", "Ready.", "Hello world.", "Initializing...", "Loading modules...", "Online.", "Ready to explore.", "Booting up.", "NPC active.", "Systems check: OK.", "Running script.", "Awake.", "Functioning.", "Standing by.", "I am here.", "Connected.", "Alive.", "Powering on.", "Intelligence active."},
+		Damage = {"Damage detected!", "Evasive maneuvers!", "Warning: Health low!", "Taking hits!", "Seeking safety!", "Injury sustained!", "Repair needed!", "System alert!", "Critical hits!", "Under fire!", "Retreating!", "Avoiding damage!", "Ouch.", "Pain detected.", "Safety protocol!", "Defensive mode!", "Taking damage!", "Falling back!", "Under attack!", "Damaged!"},
+		Death = {"Deceased.", "Powering down...", "Critical failure.", "Goodbye.", "Shutdown.", "Deleted.", "Destroyed.", "Offline.", "Suspending...", "Dead.", "Fatal error.", "Crash.", "Breaking apart.", "Final breath.", "End of line.", "System exit.", "Terminated.", "Vanishing.", "Gone.", "Ending."},
+		Read = {"That sign says '%s'.", "I'm reading '%s'.", "Wait, it says '%s'.", "Text found: '%s'.", "My sensors read '%s'.", "Deciphering '%s'.", "Scanning text: '%s'.", "Oh, it says '%s'.", "I see '%s' written.", "Reading: '%s'.", "Analyzing sign: '%s'.", "Text captured: '%s'.", "I can read that: '%s'.", "The label says '%s'.", "Is that '%s'?", "Checking: '%s'.", "Interpreting: '%s'.", "Script detected: '%s'.", "Decoding: '%s'.", "It clearly says '%s'."},
+		Hear = {"I hear '%s'.", "What is that '%s' noise?", "Sound detected: '%s'.", "Auditory input: '%s'.", "Listening to '%s'.", "I hear you, '%s'.", "Noise identified: '%s'.", "Acoustic signal: '%s'.", "Vibrations from '%s'.", "Hearing '%s' nearby.", "That's '%s', isn't it?", "Audio data: '%s'.", "Something is making a '%s' sound.", "I recognize that: '%s'.", "Tracking sound: '%s'.", "Loud '%s' detected.", "Source found: '%s'.", "Detecting '%s'.", "I hear '%s' close by.", "Acoustics: '%s'."},
+		SeeObject = {"Looking at %s.", "I see a %s.", "Object found: %s.", "Scanning %s.", "Visual on %s.", "Analysis: %s.", "Item detected: %s.", "Focusing on %s.", "Seeing %s.", "Data on %s.", "Observing %s.", "Target object: %s.", "A %s is here.", "Visual lock: %s.", "Identification: %s.", "Entity type: %s.", "Spotting %s.", "Checking out %s.", "Found a %s.", "Rendering %s."},
+		SeePlayer = {"I spot %s.", "Target acquired: %s.", "Hello, %s.", "I see you, %s.", "Scanning player: %s.", "Tracking %s.", "Player focus: %s.", "Found you, %s.", "Visual lock: %s.", "Analyzing %s.", "Watching %s.", "Identify yourself, %s.", "You're here, %s.", "Movement by %s.", "Recording %s.", "I'm seeing %s.", "Data on player %s.", "Entity %s sighted.", "Observing player %s.", "Locking on %s."}
 	},
 	Mean = {
-		Math = {"Are you too dumb to know %s is %s?", "Do your own math next time, but %s is %s.", "Even a baby knows %s is %s."},
-		Spawn = {"Ugh, I'm alive again. Great.", "Don't bother me, I just spawned.", "Who turned me on? Leave me alone."},
-		Damage = {"Watch it, idiot!", "Who did that?! I'll get you!", "Stop hurting me, you moron!"},
-		Death = {"I hate you all...", "Finally, away from you losers...", "You useless players let me die!"},
-		Read = {"Who cares that it says '%s'?", "Dumb sign says '%s'."},
-		Hear = {"Turn off that '%s' noise!", "'%s' is hurting my ears."},
-		SeeObject = {"Ugh, a %s. Boring.", "Why is there a %s here?"},
-		SeePlayer = {"Stop staring at me, %s!", "Take a picture, %s, it lasts longer."}
+		Math = {"Are you too dumb to know %s is %s?", "Do your own math, %s is %s.", "Even a baby knows %s is %s.", "Ugh, fine. %s is %s.", "Idiot, it's %s.", "Learn to count, it's %s.", "You're slow. It's %s.", "My cat knows it's %s.", "Pathetic. %s is %s.", "Calculated your stupidity... and %s.", "It's %s, obviously.", "Dumb question. It's %s.", "Waste of my time. %s.", "You're failing. It's %s.", "Go to school. It's %s.", "Math is hard for you? It's %s.", "I'm smarter than you. %s.", "The answer is %s, genius.", "Stop asking. It's %s.", "Calculation finished: %s."},
+		Spawn = {"Ugh, I'm back.", "Don't bother me.", "Great, this place again.", "Who turned me on?", "I hate spawning.", "Great, more losers.", "Look who it is.", "Back in this dump.", "I was sleeping.", "Leave me alone.", "I'm here, unfortunately.", "What do you want?", "Ugh.", "Spawned into a mess.", "Don't look at me.", "I'm alive. Sadly.", "Back and bitter.", "Don't touch the NPC.", "Shut up, I'm loading.", "Finally, I'm here."},
+		Damage = {"Watch it, idiot!", "Who did that?!", "Stop hurting me, moron!", "You're going to regret that!", "I'll kill you!", "Stop it!", "You're trash.", "Assault!", "I'll report you!", "Back off!", "You're dead meat!", "Coward!", "I'll delete your account!", "Touch me again, I dare you.", "Useless player.", "Stupid attacker!", "Watch your aim!", "I'll haunt your code!", "You're annoying!", "Die!"},
+		Death = {"I hate you all...", "Finally, away from you.", "You losers let me die!", "Rot in hell.", "Worst server ever.", "I'm glad I'm dead.", "See you never.", "Trash players.", "Garbage.", "Unsubscribe.", "I'm leaving.", "Finally, freedom.", "I'll be back for you.", "Curse you.", "Hated every second.", "Goodbye, idiots.", "Useless.", "Pathetic end.", "Typical.", "I'm out."},
+		Read = {"Who cares that it says '%s'?", "Dumb sign says '%s'.", "I'm not reading '%s' for you.", "Waste of a label: '%s'.", "Why does it say '%s'? So stupid.", "Ugly font on '%s'.", "Can't believe it says '%s'.", "Garbage text: '%s'.", "Reading '%s' made me dumber.", "I'm ignoring that it says '%s'.", "Who wrote '%s'? An idiot.", "Look at this trash: '%s'.", "Sign says '%s', I say get a life.", "Boring text: '%s'.", "I'm not impressed by '%s'.", "Stop making me read '%s'.", "That '%s' is pathetic.", "Pointless sign says '%s'.", "Whatever, it says '%s'.", "Dumb words: '%s'."},
+		Hear = {"Turn off that '%s' noise!", "'%s' is hurting my ears.", "What kind of idiot makes a '%s' sound?", "Shut up with that '%s'.", "I hate that '%s' noise.", "Stop making '%s' sounds.", "Your '%s' is annoying.", "Enough with the '%s'.", "Die, '%s' sound!", "Disgusting noise: '%s'.", "I'm reporting that '%s' noise.", "Ear-bleed from '%s'.", "Quiet down, '%s'!", "I'm deleting the sound of '%s'.", "You sound like '%s', it's gross.", "Horrible acoustics: '%s'.", "Kill the '%s'.", "Noise pollution: '%s'.", "I'm muting '%s'.", "Stop the '%s'!"},
+		SeeObject = {"Ugh, a %s. Boring.", "Why is there a %s here?", "Trash object: %s.", "A %s? Really?", "Get this %s out of my sight.", "I've seen better %s models in 2008.", "Pathetic %s.", "Who placed this %s?", "Ugly %s.", "I'm judging this %s.", "Useless %s.", "A %s. How original.", "Delete this %s.", "This %s is a glitch.", "Stupid %s.", "Looking at this %s is a waste.", "Zero stars for this %s.", "I hate %s.", "Why am I seeing this %s?", "Horrible %s."},
+		SeePlayer = {"Stop staring at me, %s!", "Take a picture, %s, it lasts longer.", "You look like a noob, %s.", "Ugly avatar, %s.", "Get lost, %s.", "I'm judging you, %s.", "You're a waste of server space, %s.", "Why are you here, %s?", "Go away, %s.", "I'm recording your failure, %s.", "You're transparently stupid, %s.", "Stop breathing, %s.", "I hate your face, %s.", "Pathetic player: %s.", "Delete your account, %s.", "You're annoying, %s.", "Ugh, it's %s.", "Look at this loser, %s.", "I'm reporting %s.", "Bye, %s, hopefully forever."}
 	}
 }
 
@@ -147,8 +142,6 @@ end
 local tglB = btn("START AI", Color3.fromRGB(0, 180, 0))
 local lineB = btn("TOGGLE LINES: ON", Color3.fromRGB(40, 120, 180))
 local meanB = btn("TOGGLE MEAN: OFF", Color3.fromRGB(200, 80, 80))
-
--- The New Highlight Toggle
 local highB = btn("HIGHLIGHT ANALYZE: OFF", Color3.fromRGB(40, 40, 45))
 highB.MouseButton1Click:Connect(function()
 	highlightActive = not highlightActive
@@ -194,7 +187,7 @@ RunService.RenderStepped:Connect(function()
 	if hum then stats.Health = hum.Health end
 	mindLab.Text = "MIND: " .. tostring(stats.Mind):upper()
 	analysisLab.Text = "RESULT: " .. tostring(stats.AnalysisResult)
-	for k,v in pairs(bars) do v.Size = UDim2.new(math.clamp(stats[k]/100, 0, 1), 0, 1, 0) end
+	for k,v in pairs(bars) do if stats[k] then v.Size = UDim2.new(math.clamp(stats[k]/100, 0, 1), 0, 1, 0) end end
 end)
 
 local function findEscapePoint()
@@ -218,7 +211,7 @@ local function startNPC()
 				local run = (behaviorName == "Athletic" or behaviorName == "Aggressive" or threatPart ~= nil)
 				hum.WalkSpeed = isDancing and 0 or initialWalkSpeed * (run and (threatPart and 2.5 or behaviorConfig[behaviorName].Speed) or 1)
 				stats.Stamina = run and stats.Stamina - 1 or math.min(100, stats.Stamina + 1)
-			else stats.Tiredness = math.min(100, stats.Tiredness + 1) if stats.Tiredness > 95 and not sleepMode then hum.Jump = true end end
+			else stats.Tiredness = math.min(100, stats.Tiredness + 1) end
 		end
 	end)
 	
@@ -246,7 +239,7 @@ local function startNPC()
 						say(linesPool[math.random(1, #linesPool)], target.Name) 
 						lastSay = tick() 
 					end
-				else hum.AutoRotate = true target, stareTimer, cooldown = nil, 0, (behaviorName == "Observant") and 5 or 12 end
+				else hum.AutoRotate = true target, stareTimer, cooldown = nil, 0, 12 end
 			else hum.AutoRotate = true stareTimer = 0 end
 			task.wait(0.1)
 		end
@@ -256,69 +249,51 @@ local function startNPC()
 		local lastSpeak = 0
 		while active and hum and hum.Health > 0 do
 			if head and root then
-				local currentThought = "Wandering..."
+				local currentThought, foundData = "Wandering...", {}
 				local speakTrigger, speakFormat = nil, nil
-				local foundData = {}
-				
-				local rayOrigin = head.Position
-				local rayDirection = head.CFrame.LookVector * 150
-				local params = RaycastParams.new()
-				params.FilterDescendantsInstances = {char}
-				params.FilterType = Enum.RaycastFilterType.Exclude
-				local result = Workspace:Raycast(rayOrigin, rayDirection, params)
+				local params = RaycastParams.new() params.FilterDescendantsInstances = {char} params.FilterType = Enum.RaycastFilterType.Exclude
+				local result = Workspace:Raycast(head.Position, head.CFrame.LookVector * 150, params)
 				
 				if result and result.Instance then
 					local hit = result.Instance
-					
-					-- Update Highlight Adornee if enabled
-					if highlightActive then
-						analysisHighlight.Adornee = hit
-					end
-
-					local hitModel = hit:FindFirstAncestorOfClass("Model")
-					local hitPlayer = hitModel and Players:GetPlayerFromCharacter(hitModel)
+					if highlightActive then analysisHighlight.Adornee = hit end
+					local hitPlayer = Players:GetPlayerFromCharacter(hit:FindFirstAncestorOfClass("Model"))
 					
 					if hitPlayer then
 						currentThought = "Analyzing " .. hitPlayer.Name
 						table.insert(foundData, "Entity: " .. hitPlayer.Name)
-						if math.random(1, 15) == 1 then speakTrigger, speakFormat = hitPlayer.Name, (isMean and dialogs.Mean.SeePlayer or dialogs.Normal.SeePlayer) end
+						if math.random(1, 10) == 1 then speakTrigger, speakFormat = hitPlayer.Name, (isMean and dialogs.Mean.SeePlayer or dialogs.Normal.SeePlayer) end
 					else
 						currentThought = "Scanning " .. hit.Name
 						for _, obj in ipairs(hit:GetDescendants()) do
-							if obj:IsA("TextLabel") or obj:IsA("TextBox") or obj:IsA("TextButton") then
-								if obj.Text ~= "" then table.insert(foundData, "TXT: " .. obj.Text) end
-							elseif obj:IsA("ImageLabel") or obj:IsA("Decal") or obj:IsA("Texture") then
-								local id = obj:IsA("ImageLabel") and obj.Image or obj.Texture
-								table.insert(foundData, "IMG: " .. tostring(id):sub(1, 15))
-							end
+							if obj:IsA("TextLabel") and obj.Text ~= "" then table.insert(foundData, "TXT: " .. obj.Text) end
 						end
-						
 						if #foundData > 0 then
 							local firstText = foundData[1]:match("TXT: (.+)")
-							if firstText and math.random(1, 8) == 1 then
-								speakTrigger, speakFormat = firstText:sub(1, 20), (isMean and dialogs.Mean.Read or dialogs.Normal.Read)
+							if firstText and math.random(1, 5) == 1 then speakTrigger, speakFormat = firstText:sub(1, 20), (isMean and dialogs.Mean.Read or dialogs.Normal.Read) end
+						elseif math.random(1, 20) == 1 then speakTrigger, speakFormat = hit.Name, (isMean and dialogs.Mean.SeeObject or dialogs.Normal.SeeObject) end
+					end
+				else if highlightActive then analysisHighlight.Adornee = nil end end
+				
+				-- Voice Chat / Speech Bubbles
+				for _, p in ipairs(Players:GetPlayers()) do
+					if p ~= player and p.Character then
+						local dist = (p.Character:GetPivot().Position - root.Position).Magnitude
+						if dist < 60 then
+							local isTalking = false pcall(function() isTalking = VoiceChatService:IsTalking(p.UserId) end)
+							if isTalking then
+								local msg = "Voice Traffic"
+								local h = p.Character:FindFirstChild("Head")
+								local b = h and (h:FindFirstChild("VoiceBubble") or h:FindFirstChildWhichIsA("BillboardGui"))
+								if b then local l = b:FindFirstChildWhichIsA("TextLabel", true) if l and l.Text ~= "" then msg = l.Text end end
+								currentThought = "Acoustics: " .. p.DisplayName
+								if math.random(1, 8) == 1 then speakTrigger, speakFormat = msg:sub(1,20), (isMean and dialogs.Mean.Hear or dialogs.Normal.Hear) end
 							end
-						else
-							if math.random(1, 30) == 1 then speakTrigger, speakFormat = hit.Name, (isMean and dialogs.Mean.SeeObject or dialogs.Normal.SeeObject) end
-						end
-					end
-				else
-					if highlightActive then analysisHighlight.Adornee = nil end
-				end
-				
-				for _, v in pairs(Workspace:GetDescendants()) do
-					if v:IsA("Sound") and v.IsPlaying and v.Parent and v.Parent:IsA("BasePart") then
-						if (v.Parent.Position - root.Position).Magnitude < 60 then
-							currentThought = "Acoustics: " .. v.Name
-							if math.random(1, 10) == 1 then speakTrigger, speakFormat = v.Name, (isMean and dialogs.Mean.Hear or dialogs.Normal.Hear) end
-							break
 						end
 					end
 				end
 				
-				stats.Mind = currentThought
-				stats.AnalysisResult = #foundData > 0 and table.concat(foundData, " | ") or "None"
-				
+				stats.Mind, stats.AnalysisResult = currentThought, (#foundData > 0 and table.concat(foundData, " | ") or "None")
 				if speakTrigger and speakFormat and tick() - lastSpeak > 8 then
 					lastSpeak = tick()
 					say(string.format(speakFormat[math.random(1, #speakFormat)], speakTrigger))
@@ -332,20 +307,15 @@ local function startNPC()
 		while active and hum and hum.Health > 0 do
 			if resting or isDancing then task.wait(1) continue end
 			local goal = threatPart and findEscapePoint() or root.Position + Vector3.new(math.random(-100,100), 0, math.random(-100,100))
-			local path = PathfindingService:CreatePath({AgentRadius = 4, AgentCanJump = true, AgentHeight = 5})
+			local path = PathfindingService:CreatePath({AgentRadius = 4, AgentCanJump = true})
 			path:ComputeAsync(root.Position, goal)
 			if path.Status == Enum.PathStatus.Success then
-				local waypoints = path:GetWaypoints()
-				for i, wp in ipairs(waypoints) do
+				for i, wp in ipairs(path:GetWaypoints()) do
 					if not active or resting or isDancing or (threatPart and i == 1) then break end
-					if (root.Position - wp.Position).Magnitude > 350 then break end
 					hum:MoveTo(wp.Position)
 					if wp.Action == Enum.PathWaypointAction.Jump then hum.Jump = true end
-					local ray = Ray.new(root.Position, root.CFrame.LookVector * 5)
-					local hit = workspace:FindPartOnRayWithIgnoreList(ray, {char})
-					if hit and (not hit:IsA("Seat") or stats.Tiredness > 30) then hum.Jump = true end
 					local timeout = tick()
-					repeat RunService.Heartbeat:Wait() until (root.Position - wp.Position).Magnitude < 4 or tick() - timeout > 4 or (root.Position - wp.Position).Magnitude > 350
+					repeat RunService.Heartbeat:Wait() until (root.Position - wp.Position).Magnitude < 4 or tick() - timeout > 4
 				end
 			end
 			task.wait(threatPart and 0.1 or 0.5)
@@ -356,7 +326,7 @@ end
 tglB.MouseButton1Click:Connect(function()
 	active = not active
 	tglB.Text, tglB.BackgroundColor3 = active and "STOP AI" or "START AI", active and Color3.new(0.6,0,0) or Color3.new(0,0.6,0)
-	if active then startNPC() else if statThread then task.cancel(statThread) task.cancel(pathThread) task.cancel(lookThread) task.cancel(sensesThread) end stats.Mind = "Offline" stats.AnalysisResult = "None" analysisHighlight.Adornee = nil end
+	if active then startNPC() else if statThread then task.cancel(statThread) task.cancel(pathThread) task.cancel(lookThread) task.cancel(sensesThread) end stats.Mind = "Offline" end
 end)
 
 lineB.MouseButton1Click:Connect(function() linesEnabled = not linesEnabled lineB.Text = linesEnabled and "TOGGLE LINES: ON" or "TOGGLE LINES: OFF" end)
@@ -372,10 +342,8 @@ local function setup(c)
 	char, root, hum, head = c, c:WaitForChild("HumanoidRootPart"), c:WaitForChild("Humanoid"), c:WaitForChild("Head")
 	hum.Seated:Connect(function(s) resting = s end)
 	hum.UseJumpPower, lastHealth = true, hum.Health
-	
-	local poolSpawn = isMean and dialogs.Mean.Spawn or dialogs.Normal.Spawn
-	say(poolSpawn[math.random(1, #poolSpawn)])
-	
+	local p = isMean and dialogs.Mean.Spawn or dialogs.Normal.Spawn
+	say(p[math.random(1, #p)])
 	hum.HealthChanged:Connect(function(h)
 		if h < lastHealth and h > 0 then
 			if not threatPart then
@@ -389,16 +357,13 @@ local function setup(c)
 		lastHealth = h
 	end)
 	hum.Died:Connect(function()
-		local poolDeath = isMean and dialogs.Mean.Death or dialogs.Normal.Death
-		say(poolDeath[math.random(1, #poolDeath)])
-		active = false tglB.Text, tglB.BackgroundColor3 = "START AI", Color3.new(0,0.6,0)
-		stats.Mind = "Deceased"
-		analysisHighlight.Adornee = nil
-		if statThread then task.cancel(statThread) task.cancel(pathThread) task.cancel(lookThread) task.cancel(sensesThread) end
+		local d = isMean and dialogs.Mean.Death or dialogs.Normal.Death
+		say(d[math.random(1, #d)])
+		active = false if statThread then task.cancel(statThread) task.cancel(pathThread) task.cancel(lookThread) task.cancel(sensesThread) end
 	end)
 	hum.StateChanged:Connect(function(_, state)
 		if state == Enum.HumanoidStateType.Freefall then if not falling then falling, lastY = true, root.Position.Y end
-		elseif state  == Enum.HumanoidStateType.Landed then if falling then falling = false local fallen = lastY - root.Position.Y if fallen > 20 then hum:TakeDamage((fallen - 20) * 5) end end end
+		elseif state == Enum.HumanoidStateType.Landed then if falling then falling = false local fallen = lastY - root.Position.Y if fallen > 20 then hum:TakeDamage((fallen - 20) * 5) end end end
 	end)
 end
 
