@@ -23,7 +23,8 @@ local stats = {
 	Hunger = 100, 
 	Thirst = 100,
 	Health = 100,
-	Mind = "Offline"
+	Mind = "Offline",
+	AnalysisResult = "None"
 }
 
 local behaviorConfig = {
@@ -64,8 +65,8 @@ ui.Name = "GTANPC_ULTIMATE_AWARE"
 ui.ResetOnSpawn = false
 
 local mainHolder = Instance.new("Frame", ui)
-mainHolder.Size = UDim2.new(0, 220, 0, 650)
-mainHolder.Position = UDim2.new(0, 50, 0.2, 0)
+mainHolder.Size = UDim2.new(0, 240, 0, 700)
+mainHolder.Position = UDim2.new(0, 50, 0.15, 0)
 mainHolder.BackgroundTransparency = 1
 mainHolder.Active, mainHolder.Draggable = true, true
 
@@ -142,21 +143,25 @@ local spdI = inp("Speed (16)")
 local jmpI = inp("Jump (50)")
 local killB = btn("GIVE UP", Color3.fromRGB(60, 60, 60))
 
-local vit = createPanel(mainHolder, "VITALS & MIND", UDim2.new(0, 0, 0, 390), UDim2.new(1, 0, 0, 280))
-local vl = Instance.new("UIListLayout", vit) vl.Padding = UDim.new(0, 6) Instance.new("UIPadding", vit).PaddingLeft = UDim.new(0, 12)
+local vit = createPanel(mainHolder, "VITALS & ANALYSIS", UDim2.new(0, 0, 0, 390), UDim2.new(1, 0, 0, 310))
+local vl = Instance.new("UIListLayout", vit) vl.Padding = UDim.new(0, 4) Instance.new("UIPadding", vit).PaddingLeft = UDim.new(0, 12)
 
 local behLab = Instance.new("TextLabel", vit)
-behLab.Size, behLab.BackgroundTransparency, behLab.TextColor3, behLab.Font, behLab.TextSize = UDim2.new(1, -24, 0, 25), 1, Color3.new(1, 1, 0), Enum.Font.GothamBold, 9
+behLab.Size, behLab.BackgroundTransparency, behLab.TextColor3, behLab.Font, behLab.TextSize = UDim2.new(1, -24, 0, 20), 1, Color3.new(1, 1, 0), Enum.Font.GothamBold, 9
 behLab.Text = "BEHAVIOR: CALC..."
 
 local mindLab = Instance.new("TextLabel", vit)
-mindLab.Size, mindLab.BackgroundTransparency, mindLab.TextColor3, mindLab.Font, mindLab.TextSize = UDim2.new(1, -24, 0, 25), 1, Color3.new(0, 1, 1), Enum.Font.GothamBold, 9
+mindLab.Size, mindLab.BackgroundTransparency, mindLab.TextColor3, mindLab.Font, mindLab.TextSize = UDim2.new(1, -24, 0, 20), 1, Color3.new(0, 1, 1), Enum.Font.GothamBold, 9
 mindLab.Text = "MIND: OFFLINE"
-mindLab.TextWrapped = true
+
+local analysisLab = Instance.new("TextLabel", vit)
+analysisLab.Size, analysisLab.BackgroundTransparency, analysisLab.TextColor3, analysisLab.Font, analysisLab.TextSize = UDim2.new(1, -24, 0, 45), 1, Color3.new(1, 1, 1), Enum.Font.Code, 8
+analysisLab.Text = "ANALYSIS: NONE"
+analysisLab.TextWrapped, analysisLab.TextXAlignment = true, Enum.TextXAlignment.Left
 
 local bars = {}
 local function bar(n, c)
-	local cnt = Instance.new("Frame", vit) cnt.Size, cnt.BackgroundTransparency = UDim2.new(1, -24, 0, 18), 1
+	local cnt = Instance.new("Frame", vit) cnt.Size, cnt.BackgroundTransparency = UDim2.new(1, -24, 0, 15), 1
 	local tl = Instance.new("TextLabel", cnt) tl.Text, tl.Size, tl.TextColor3, tl.BackgroundTransparency, tl.Font, tl.TextSize = n:upper(), UDim2.new(0, 55, 1, 0), Color3.new(1,1,1), 1, Enum.Font.GothamBold, 7
 	local bg = Instance.new("Frame", cnt) bg.Size, bg.Position, bg.BackgroundColor3 = UDim2.new(1, -60, 0, 10), UDim2.new(0, 60, 0, 4), Color3.fromRGB(25, 25, 25)
 	local f = Instance.new("Frame", bg) f.Size, f.BackgroundColor3 = UDim2.new(1, 0, 1, 0), c Instance.new("UICorner", f) bars[n] = f
@@ -166,6 +171,7 @@ bar("Health", Color3.new(1,0,0)) bar("Stamina", Color3.new(0,1,0)) bar("Tirednes
 RunService.RenderStepped:Connect(function()
 	if hum then stats.Health = hum.Health end
 	mindLab.Text = "MIND: " .. tostring(stats.Mind):upper()
+	analysisLab.Text = "RESULT: " .. tostring(stats.AnalysisResult)
 	for k,v in pairs(bars) do v.Size = UDim2.new(math.clamp(stats[k]/100, 0, 1), 0, 1, 0) end
 end)
 
@@ -230,6 +236,7 @@ local function startNPC()
 			if head and root then
 				local currentThought = "Wandering..."
 				local speakTrigger, speakFormat = nil, nil
+				local foundData = {}
 				
 				local rayOrigin = head.Position
 				local rayDirection = head.CFrame.LookVector * 150
@@ -244,21 +251,26 @@ local function startNPC()
 					local hitPlayer = hitModel and Players:GetPlayerFromCharacter(hitModel)
 					
 					if hitPlayer then
-						currentThought = "Looking at " .. hitPlayer.Name
+						currentThought = "Analyzing " .. hitPlayer.Name
+						table.insert(foundData, "Entity: " .. hitPlayer.Name)
 						if math.random(1, 15) == 1 then speakTrigger, speakFormat = hitPlayer.Name, (isMean and dialogs.Mean.SeePlayer or dialogs.Normal.SeePlayer) end
 					else
-						local gui = hit:FindFirstChildWhichIsA("SurfaceGui", true) or hit:FindFirstChildWhichIsA("BillboardGui", true)
-						local readText = nil
-						if gui then
-							local label = gui:FindFirstChildWhichIsA("TextLabel", true) or gui:FindFirstChildWhichIsA("TextButton", true)
-							if label and label.Text ~= "" and label.Text:match("%w") then readText = label.Text end
+						currentThought = "Scanning " .. hit.Name
+						for _, obj in ipairs(hit:GetDescendants()) do
+							if obj:IsA("TextLabel") or obj:IsA("TextBox") or obj:IsA("TextButton") then
+								if obj.Text ~= "" then table.insert(foundData, "TXT: " .. obj.Text) end
+							elseif obj:IsA("ImageLabel") or obj:IsA("Decal") or obj:IsA("Texture") then
+								local id = obj:IsA("ImageLabel") and obj.Image or obj.Texture
+								table.insert(foundData, "IMG: " .. tostring(id):sub(1, 15))
+							end
 						end
 						
-						if readText then
-							currentThought = "Reading text: " .. readText
-							if math.random(1, 5) == 1 then speakTrigger, speakFormat = readText:sub(1, 20), (isMean and dialogs.Mean.Read or dialogs.Normal.Read) end
+						if #foundData > 0 then
+							local firstText = foundData[1]:match("TXT: (.+)")
+							if firstText and math.random(1, 8) == 1 then
+								speakTrigger, speakFormat = firstText:sub(1, 20), (isMean and dialogs.Mean.Read or dialogs.Normal.Read)
+							end
 						else
-							currentThought = "Analyzing object: " .. hit.Name
 							if math.random(1, 30) == 1 then speakTrigger, speakFormat = hit.Name, (isMean and dialogs.Mean.SeeObject or dialogs.Normal.SeeObject) end
 						end
 					end
@@ -267,7 +279,7 @@ local function startNPC()
 				for _, v in pairs(Workspace:GetDescendants()) do
 					if v:IsA("Sound") and v.IsPlaying and v.Parent and v.Parent:IsA("BasePart") then
 						if (v.Parent.Position - root.Position).Magnitude < 60 then
-							currentThought = "Hearing sound: " .. v.Name
+							currentThought = "Acoustics: " .. v.Name
 							if math.random(1, 10) == 1 then speakTrigger, speakFormat = v.Name, (isMean and dialogs.Mean.Hear or dialogs.Normal.Hear) end
 							break
 						end
@@ -275,6 +287,8 @@ local function startNPC()
 				end
 				
 				stats.Mind = currentThought
+				stats.AnalysisResult = #foundData > 0 and table.concat(foundData, " | ") or "None"
+				
 				if speakTrigger and speakFormat and tick() - lastSpeak > 8 then
 					lastSpeak = tick()
 					say(string.format(speakFormat[math.random(1, #speakFormat)], speakTrigger))
@@ -312,7 +326,7 @@ end
 tglB.MouseButton1Click:Connect(function()
 	active = not active
 	tglB.Text, tglB.BackgroundColor3 = active and "STOP AI" or "START AI", active and Color3.new(0.6,0,0) or Color3.new(0,0.6,0)
-	if active then startNPC() else if statThread then task.cancel(statThread) task.cancel(pathThread) task.cancel(lookThread) task.cancel(sensesThread) end stats.Mind = "Offline" end
+	if active then startNPC() else if statThread then task.cancel(statThread) task.cancel(pathThread) task.cancel(lookThread) task.cancel(sensesThread) end stats.Mind = "Offline" stats.AnalysisResult = "None" end
 end)
 
 lineB.MouseButton1Click:Connect(function() linesEnabled = not linesEnabled lineB.Text = linesEnabled and "TOGGLE LINES: ON" or "TOGGLE LINES: OFF" end)
